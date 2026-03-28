@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find C:devKDRIVEkdrive-frontsrc -name *.component.ts -type f)",
+      "Bash(find C:devKDRIVEkdrive-frontsrc -name *.config.ts -o -name *environment*)",
+      "Bash(find C:devKDRIVEkdrive-frontsrcapp -type f -name *.ts)",
+      "Bash(xargs grep:*)",
+      "Bash(find C:devKDRIVEkdrive-front -type f -name *.html)",
+      "Bash(find C:devKDRIVEkdrive-frontsrcassetsscss -name *.scss)",
+      "Bash(find C:devKDRIVEkdrive-frontsrcassetsscss -name *default* -o -name *variable*)",
+      "Bash(npx ng:*)",
+      "Bash(\"/c/Program Files/JetBrains/IntelliJ IDEA 2023.1.3/plugins/maven/lib/maven3/bin/mvn\" compile -q)",
+      "Bash(\"/c/Program Files/JetBrains/IntelliJ IDEA 2023.1.3/plugins/maven/lib/maven3/bin/mvn\" spring-boot:run)",
+      "Bash(curl -s http://localhost:8081/v3/api-docs)",
+      "Bash(curl:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(\"/c/Program Files/JetBrains/IntelliJ IDEA 2023.1.3/plugins/maven/lib/maven3/bin/mvn\" test -q)",
+      "Bash(timeout 5 openssl s_client -connect mail.innologys.fr:993 -brief)",
+      "Bash(jar tf:*)",
+      "Bash(unzip:*)",
+      "Bash(gh repo:*)",
+      "Bash(git ls-remote:*)",
+      "Bash(git remote:*)",
+      "Bash(git branch:*)",
+      "Bash(printf \"protocol=https\\\\nhost=github.com\\\\n\")",
+      "Bash(git credential-manager:*)",
+      "Bash(git checkout:*)"
+    ]
+  }
+}

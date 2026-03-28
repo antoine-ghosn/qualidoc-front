@@ -1,0 +1,22 @@
+wh# ═══════════════════════════════════════════════════════════════
+# Qualidoc - Frontend (Dokploy)
+# ═══════════════════════════════════════════════════════════════
+# Set BACKEND_URL in Dokploy environment variables:
+#   BACKEND_URL=http://qualidoc-backend:8081
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  frontend:
+    build: .
+    container_name: qualidoc-frontend
+    restart: always
+    expose:
+      - "80"
+    environment:
+      - BACKEND_URL=${BACKEND_URL:-http://qualidoc-backend:8081}
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true

@@ -1,0 +1,49 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="row">
+      <div class="col-lg-9">
+        <mat-form-field appearance="outline" class="w-100 hide-hint">
+          <input
+            matInput
+            [placeholder]="lang.t('ged.search')"
+            (keyup)="search($any($event.target).value)"
+          />
+          <mat-icon matSuffix>
+            <i-tabler name="search" class="icon-20 d-flex m-t-2"></i-tabler>
+          </mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ lang.t('ged.folder') }}</mat-label>
+          <mat-select
+            value=""
+            (selectionChange)="selectCategory($any($event).value)"
+          >
+            <mat-option value=""></mat-option>
+            @for (folder of folders(); track folder.name) {
+            <mat-option [value]="folder.name">{{ folder.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab [label]="lang.t('ged.listView')">
+        <app-ged-data-table
+          [columns]="columns()"
+          [data]="documents()"
+        ></app-ged-data-table>
+      </mat-tab>
+      <mat-tab [label]="lang.t('ged.treeView')">
+        <app-ged-tree-view
+          [columnName]="'name'"
+          [columns]="columns()"
+          [data]="documents()"
+          [groupBy]="'type'"
+          [baseType]="type() ?? undefined"
+        ></app-ged-tree-view>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,1431 @@
+openapi: 3.0.2
+info:
+  title: GED API
+  version: 1.0.0
+paths:
+  /users/profile:
+    get:
+      summary: Get user profile including last login info
+      operationId: getUserProfile
+      responses:
+        "200":
+          description: Successful user profile retrieval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: User not found
+
+  /documents:
+    get:
+      summary: Get documents with filters and pagination
+      operationId: getDocuments
+      parameters:
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: searchQuery
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+        - name: pageIndex
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        "200":
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  total:
+                    type: integer
+                    format: int64
+        "401":
+          description: Unauthorized
+
+    post:
+      summary: Create a new document
+      operationId: createDocument
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Document"
+      responses:
+        "201":
+          description: Document created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+        "400":
+          description: Invalid input
+        "401":
+          description: Unauthorized
+
+  /documents/{id}:
+    get:
+      summary: Get a specific document by ID
+      operationId: getDocumentById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Document found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+        "404":
+          description: Document not found
+        "401":
+          description: Unauthorized
+
+    put:
+      summary: Update a specific document
+      operationId: updateDocument
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Document" # use the same schema as GET
+      responses:
+        "200":
+          description: Document updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+        "400":
+          description: Invalid input
+        "404":
+          description: Document not found
+        "401":
+          description: Unauthorized
+
+    delete:
+      summary: Delete a specific document
+      operationId: deleteDocument
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Document deleted
+        "404":
+          description: Document not found
+        "401":
+          description: Unauthorized
+
+  /document-types:
+    get:
+      summary: Get all document types
+      operationId: listDocumentTypes
+
+      responses:
+        "200":
+          description: List of document types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DocumentType"
+
+    post:
+      summary: Create a new document type
+      operationId: CreateDocumentType
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DocumentType"
+      responses:
+        "201":
+          description: Document type created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocumentType"
+
+  /document-types/{tenant}:
+    get:
+      summary: Get document type by tenant
+      operationId: getDocumentTypeByTenant
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A document type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocumentType"
+
+  /document-types/{id}:
+    put:
+      summary: Update an existing document type
+      operationId: updateDocumentType
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DocumentType"
+      responses:
+        "200":
+          description: Document type updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocumentType"
+
+    delete:
+      summary: Delete a document type
+      operationId: deleteDocumentType
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: Deleted successfully
+
+  /document-types/document-column/{id}:
+    get:
+      summary: Get document column by ID
+      operationId: getDocumentColumnById
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: A document column
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocumentColumn"
+    put:
+      summary: Update an existing document column
+      operationId: updateDocumentColumn
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the document column to update
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DocumentColumn"
+      responses:
+        "200":
+          description: Document column updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocumentColumn"
+
+  /document-types/{id}/tree-view-hierarchy:
+    patch:
+      summary: Update the treeViewHierarchy of a document type
+      operationId: updateDocumentTypeTreeViewHierarchy
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - treeViewHierarchy
+              properties:
+                treeViewHierarchy:
+                  type: array
+                  description: Column names in order of hierarchy
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: Hierarchy updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocumentType"
+
+  /alias:
+    get:
+      summary: Get all alias entries
+      operationId: getAliases
+      responses:
+        "200":
+          description: List of aliases
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Alias"
+        "401":
+          description: Unauthorized
+
+    post:
+      summary: Create a new alias entry (primary word + list of aliases)
+      operationId: createAlias
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Alias"
+      responses:
+        "201":
+          description: Alias entry created
+        "400":
+          description: Invalid input
+
+    put:
+      summary: Replace an alias entry entirely
+      operationId: replaceAlias
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Alias"
+      responses:
+        "200":
+          description: Alias entry replaced
+
+    delete:
+      summary: Delete all aliases by primary word
+      operationId: deleteAliasByPrimaryWord
+      parameters:
+        - name: primaryWord
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Deleted successfully
+        "404":
+          description: Primary word not found
+
+  /alias/{primaryWord}/aliases:
+    post:
+      summary: Add an alias to a specific primary word
+      operationId: addAliasToPrimaryWord
+      parameters:
+        - name: primaryWord
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                alias:
+                  type: string
+              required:
+                - alias
+      responses:
+        "200":
+          description: Alias added
+        "400":
+          description: Invalid input
+
+    delete:
+      summary: Remove an alias from a specific primary word
+      operationId: removeAliasFromPrimaryWord
+      parameters:
+        - name: primaryWord
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: alias
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Alias removed
+        "404":
+          description: Alias not found
+
+    put:
+      summary: Update an alias for a specific primary word
+      operationId: updateAliasForPrimaryWord
+      parameters:
+        - name: primaryWord
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oldAlias:
+                  type: string
+                newAlias:
+                  type: string
+              required:
+                - oldAlias
+                - newAlias
+      responses:
+        "200":
+          description: Alias updated
+        "404":
+          description: Alias not found
+
+  /transfert/{flowType}:
+    post:
+      summary: Start a transfert
+      operationId: startTransfert
+      parameters:
+        - name: flowType
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [IMPORT, EXPORT]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - settingId
+                - folder
+              properties:
+                settingId:
+                  type: integer
+                  format: int64
+                  description: ID of the saved transfert setting (FTP, IMAP, etc.)
+                folder:
+                  type: string
+                  description: Folder path to use for this specific transfert
+      responses:
+        "202":
+          description: Transfert started
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tracking"
+
+    delete:
+      summary: Cancel a transfert
+      operationId: cancelTransfert
+      parameters:
+        - name: flowType
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: Transfert cancelled
+
+    patch:
+      summary: Resume a transfert
+      operationId: resumeTransfert
+      parameters:
+        - name: flowType
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Transfert resumed
+
+  /transfert/upload:
+    post:
+      summary: Upload files and automatically trigger batch transfer to NAS
+      operationId: uploadFiles
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - files
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Array of files to upload
+                targetFolder:
+                  type: string
+                  description: Optional target folder path on NAS (defaults to timestamp-based folder)
+                settingId:
+                  type: integer
+                  format: int64
+                  description: Optional ID of SERVER setting for NAS configuration (defaults to user's default)
+      responses:
+        "202":
+          description: Files uploaded successfully and batch transfer initiated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tracking"
+        "400":
+          description: Invalid request (no files, invalid parameters)
+        "413":
+          description: Payload too large (exceeds configured upload limits)
+        "401":
+          description: Unauthorized
+
+  /transfert/{transfertId}/download:
+    get:
+      summary: Download documents for a specific transfer
+      operationId: downloadTransfertDocuments
+      parameters:
+        - name: transfertId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: ID of the transfer to download documents from
+      responses:
+        "200":
+          description: Documents download started successfully
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        "400":
+          description: Download size exceeds user's local configuration limit
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Download size (150MB) exceeds maximum allowed size (100MB)"
+                  totalSize:
+                    type: integer
+                    format: int64
+                    description: Total size of files to download in bytes
+                  maxAllowedSize:
+                    type: integer
+                    format: int64
+                    description: Maximum allowed size from user's local configuration in bytes
+        "404":
+          description: Transfer not found or no local configuration found
+        "401":
+          description: Unauthorized
+
+  /transfert/download:
+    get:
+      summary: Download folder from NAS as compressed ZIP archive
+      operationId: downloadFolderAsZip
+      parameters:
+        - name: folder
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Name of the folder to download from user's NAS storage
+          example: "invoices-2024"
+      responses:
+        "200":
+          description: Folder downloaded successfully as ZIP archive
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        "400":
+          description: Download size exceeds user's local configuration limit
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Download size (250MB) exceeds maximum allowed size (100MB)"
+                  totalSize:
+                    type: integer
+                    format: int64
+                    description: Total size of folder to download in bytes
+                  maxAllowedSize:
+                    type: integer
+                    format: int64
+                    description: Maximum allowed size from user's local configuration in bytes
+        "404":
+          description: Folder not found in NAS or no local configuration found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Folder 'invoices-2024' not found in user's NAS storage"
+        "401":
+          description: Unauthorized
+
+  /tracking:
+    get:
+      summary: List all transfert tracking records
+      operationId: listTracking
+      parameters:
+        - name: flowType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [IMPORT, EXPORT]
+      responses:
+        "200":
+          description: List of tracking records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tracking"
+        "204":
+          description: No tracking records found
+
+  /tracking/{status}:
+    get:
+      summary: List transfert tracking records by status
+      operationId: listTrackingByStatus
+      parameters:
+        - name: status
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [PENDING, IN_PROGRESS, COMPLETED, CANCELLED, FAILED]
+      responses:
+        "200":
+          description: List of tracking records by status
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tracking"
+        "204":
+          description: No tracking records found
+
+  /tracking/{id}:
+    delete:
+      summary: Delete a tracking record by ID
+      operationId: deleteTrackingById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Tracking record deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tracking"
+        "404":
+          description: Tracking record not found
+        "204":
+          description: No content, tracking record deleted
+
+  /storage/folders:
+    get:
+      summary: List folders in remote storage for the authenticated user
+      operationId: listStorageFolders
+      parameters:
+        - name: path
+          in: query
+          required: false
+          description: Relative path to browse (defaults to root directory if not provided)
+          schema:
+            type: string
+            example: "/documents"
+      responses:
+        "200":
+          description: Successfully retrieved folder list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FolderListResponse"
+        "400":
+          description: Invalid path parameter (e.g., path traversal attempt)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid path: path traversal attempt detected"
+        "401":
+          description: Unauthorized - user not authenticated
+        "404":
+          description: Requested path does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Path not found: /documents/nonexistent"
+        "500":
+          description: Internal server error
+
+  /Setting/flow/{flowType}:
+    get:
+      summary: List all Settings for a specific flow
+      operationId: listSettingByFlow
+      parameters:
+        - name: flowType
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A list of Setting for the given flow
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SettingBase"
+
+  /Setting:
+    get:
+      summary: List all Settings
+      operationId: listSettings
+      responses:
+        "200":
+          description: A list of Settings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SettingBase"
+
+    post:
+      summary: Create a new setting
+      operationId: createSetting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Setting"
+      responses:
+        "201":
+          description: Setting created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Setting"
+
+  /Setting/{id}:
+    get:
+      summary: Get a setting by ID
+      operationId: getSettingById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: The requested setting
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SettingBase"
+        "404":
+          description: Setting not found
+
+    put:
+      summary: Update a setting by ID
+      operationId: updateSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Setting"
+      responses:
+        "200":
+          description: Setting updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Setting"
+        "404":
+          description: Setting not found
+
+    delete:
+      summary: Delete a setting by ID
+      operationId: deleteSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: Setting deleted
+        "404":
+          description: Setting not found
+
+  /ws/progress:
+    get:
+      summary: Connect to file transfer progress WebSocket
+      description: |
+        Establish a WebSocket connection to receive real-time progress updates 
+        for file transfers. Messages are sent via STOMP on `/topic/progress/{trackingId}`.
+      responses:
+        "101":
+          description: Switching Protocols – WebSocket upgrade
+      x-websocket:
+        topic: /topic/progress/{trackingId}
+        message:
+          $ref: "#/components/schemas/FileTransferUpdate"
+
+components:
+  schemas:
+    User:
+      type: object
+      description: Represents a user in the system
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the user
+        username:
+          type: string
+          description: Username of the user
+        firstName:
+          type: string
+          description: User's first name
+        lastName:
+          type: string
+          description: User's last name
+        email:
+          type: string
+          format: email
+          description: User's email address
+        emailVerified:
+          type: boolean
+          description: Indicates if the user's email has been verified
+        lastAccess:
+          type: string
+          format: date-time
+          description: Timestamp of the user's last access to the system
+        tenant:
+          type: string
+          description: User's Tenant
+      required:
+        - id
+        - username
+        - firstName
+        - lastName
+        - email
+
+    Document:
+      type: object
+      additionalProperties: true
+      description: >
+        A flexible document structure supporting arbitrary fields and nested objects.
+        Typical examples include immobilier, expediteur, destinataire, etc.
+      example:
+        id: 1
+        categorie: "Contrat de Location"
+        date: "2025-10-07"
+        resume: "Contrat de location signé entre le propriétaire et le locataire."
+        expediteur:
+          prenom: "Jean"
+          nom: "Dupont"
+          adresse: "25 Rue de la Paix, 75002 Paris, France"
+        destinataire:
+          prenom: "Marie"
+          nom: "Martin"
+          adresse: "14 Avenue des Champs-Élysées, 75008 Paris, France"
+        immobilier:
+          locataire: "Marie Martin"
+          proprietaire: "Jean Dupont"
+          lot:
+            numero: "A12"
+            porte: "3ème étage gauche"
+            surface: "65 m²"
+            codePostal: "75008"
+            ville: "Paris"
+
+    DocumentColumn:
+      type: object
+      required:
+        - name
+        - displayedName
+        - order
+        - visibility
+        - editable
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        name:
+          type: string
+        displayedName:
+          type: string
+        dataType:
+          type: string
+          enum: [DATE, STRING, NUMBER, OBJECT]
+        order:
+          type: integer
+        visibility:
+          type: boolean
+        editable:
+          type: boolean
+
+    DocumentType:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        name:
+          type: string
+        leafFormat:
+          type: string
+          description: Template string defining how leaf nodes should be displayed in the document hierarchy tree. Supports placeholders such as {name}, {id}, or any column name.
+          example: "{name} (#{id})"
+        treeViewHierarchy:
+          type: array
+          items:
+            type: string
+        columns:
+          type: array
+          items:
+            $ref: "#/components/schemas/DocumentColumn"
+
+    Alias:
+      type: object
+      required:
+        - primaryWord
+        - aliases
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        primaryWord:
+          type: string
+        aliases:
+          type: array
+          items:
+            type: string
+
+    Tracking:
+      type: object
+      required:
+        - id
+        - name
+        - status
+        - flowType
+        - type
+        - files
+        - ok
+        - ko
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        jobExecutionId:
+          type: string
+        status:
+          type: string
+          enum: [PENDING, IN_PROGRESS, COMPLETED, CANCELLED, FAILED]
+        flowType:
+          type: string
+          enum: [import, export]
+        type:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: "#/components/schemas/FileTrackingInfo"
+        ok:
+          type: array
+          items:
+            $ref: "#/components/schemas/FileTrackingInfo"
+        ko:
+          type: array
+          items:
+            $ref: "#/components/schemas/FileTrackingInfo"
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the tracking entry was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the tracking entry was last updated
+
+    FileTransferUpdate:
+      type: object
+      properties:
+        trackingId:
+          type: string
+          description: Unique ID of the file transfer
+          example: abc-123
+        trackingName:
+          type: string
+          description: Unique ID of the file transfer
+          example: abc-123
+        fileName:
+          type: string
+          description: Name of the file being transferred
+          example: invoice_2025.pdf
+        totalFiles:
+          type: integer
+          format: int32
+          minimum: 0
+          description: Total number of files in the transfer
+          example: 10
+        transferredFiles:
+          type: integer
+          format: int32
+          minimum: 0
+          description: Number of files transferred so far
+          example: 7
+        totalSize:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Total size of files being transferred in bytes
+          example: 10485760 # 10 MB
+        transferredSize:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Size of files transferred so far in bytes
+          example: 7864320 # 7.5 MB
+        status:
+          type: string
+          enum: [PENDING, IN_PROGRESS, COMPLETED, FAILED, CANCELLED]
+          description: Current status of the file transfer
+          example: IN_PROGRESS
+        flowType:
+          type: string
+          enum: [import, export]
+          description: Type of flow for the file transfer
+          example: import
+        message:
+          type: string
+          nullable: true
+          description: Optional message or status note
+          example: Uploading in progress
+
+    FileCompressionUpdate:
+      type: object
+      description: Progress update event during file compression (ZIP creation).
+      properties:
+        transfertId:
+          type: integer
+          format: int64
+          description: ID of the transfer or compression job.
+          example: 42
+
+        fileName:
+          type: string
+          description: Name of the current file being processed.
+          example: "invoice_2025.pdf"
+
+        currentIndex:
+          type: integer
+          format: int32
+          description: Index of the current file in the compression sequence.
+          example: 3
+
+        totalFiles:
+          type: integer
+          format: int32
+          description: Total number of files to compress.
+          example: 10
+
+        progress:
+          type: number
+          format: double
+          description: Compression progress in percentage (0–100).
+          example: 45.7
+
+        compressedBytes:
+          type: integer
+          format: int64
+          description: Number of bytes compressed so far.
+          example: 1048576
+
+        totalBytes:
+          type: integer
+          format: int64
+          description: Total expected bytes to be compressed.
+          example: 2097152
+
+        status:
+          type: string
+          description: Current compression status.
+          enum:
+            - PENDING
+            - IN_PROGRESS
+            - COMPLETED
+            - FAILED
+          example: IN_PROGRESS
+
+        message:
+          type: string
+          description: Optional status or error message.
+          example: "Compressing file invoice_2025.pdf"
+
+      required:
+        - transfertId
+        - status
+        - progress
+
+    FileTrackingInfo:
+      type: object
+      required:
+        - name
+        - size
+        - path
+      properties:
+        name:
+          type: string
+        size:
+          type: integer
+        path:
+          type: string
+
+    FlowType:
+      type: string
+      enum: [import, export]
+
+    SettingType:
+      type: string
+      enum: [SERVER, EMAIL, FTP, LOCAL]
+
+    EmailAccessProtocol:
+      type: string
+      enum: [POP3, IMAP]
+
+    SettingBase:
+      type: object
+      required: [name, flow, type]
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        name:
+          type: string
+        flow:
+          $ref: "#/components/schemas/FlowType"
+        type:
+          type: string
+      discriminator:
+        propertyName: type
+        mapping:
+          SERVER: "#/components/schemas/ServerSetting"
+          EMAIL: "#/components/schemas/EmailSetting"
+          FTP: "#/components/schemas/FTPSetting"
+          LOCAL: "#/components/schemas/LocalSetting"
+
+    UploadSessionResult:
+      type: object
+      description: Result of a temporary upload session initialization.
+      required:
+        - sessionId
+        - tempDirectory
+        - savedFiles
+        - totalSize
+      properties:
+        sessionId:
+          type: string
+          description: Unique identifier for the upload session.
+          example: "session-5f6e2c8b9a"
+        tempDirectory:
+          type: string
+          description: Path to the temporary directory used for storing uploaded files.
+          example: "/tmp/upload/session-5f6e2c8b9a"
+        savedFiles:
+          type: array
+          description: List of files already saved in the temporary session directory.
+          items:
+            type: string
+            example: "file1.txt"
+        totalSize:
+          type: integer
+          format: int64
+          description: Total size (in bytes) of all files in the session.
+          example: 2048576
+
+    ServerSetting:
+      allOf:
+        - $ref: "#/components/schemas/SettingBase"
+        - type: object
+          required: [base_directory]
+          properties:
+            base_directory:
+              type: string
+            temp_base_path:
+              type: string
+              description: Path to temporary upload directory
+            auto_cleanup_temp:
+              type: boolean
+              description: Automatically cleanup temp files after successful transfer
+              default: true
+
+    EmailSetting:
+      allOf:
+        - $ref: "#/components/schemas/SettingBase"
+        - type: object
+          required: [host, port, username, password, protocol]
+          properties:
+            host:
+              type: string
+            port:
+              type: string
+            username:
+              type: string
+            password:
+              type: string
+            protocol:
+              $ref: "#/components/schemas/EmailAccessProtocol"
+
+    FTPSetting:
+      allOf:
+        - $ref: "#/components/schemas/SettingBase"
+        - type: object
+          required: [ip, port, password]
+          properties:
+            ip:
+              type: string
+            port:
+              type: string
+            username:
+              type: string
+            password:
+              type: string
+
+    LocalSetting:
+      allOf:
+        - $ref: "#/components/schemas/SettingBase"
+        - type: object
+          required: [size_limit]
+          properties:
+            size_limit:
+              type: integer
+
+    Setting:
+      oneOf:
+        - $ref: "#/components/schemas/SettingBase"
+        - $ref: "#/components/schemas/ServerSetting"
+        - $ref: "#/components/schemas/EmailSetting"
+        - $ref: "#/components/schemas/FTPSetting"
+        - $ref: "#/components/schemas/LocalSetting"
+      discriminator:
+        propertyName: type
+        mapping:
+          SERVER: "#/components/schemas/ServerSetting"
+          EMAIL: "#/components/schemas/EmailSetting"
+          FTP: "#/components/schemas/FTPSetting"
+          LOCAL: "#/components/schemas/LocalSetting"
+
+    FolderInfo:
+      type: object
+      description: Information about a folder in remote storage
+      required:
+        - name
+        - path
+        - fileCount
+        - subfolderCount
+      properties:
+        name:
+          type: string
+          description: Name of the folder
+          example: "invoices"
+        path:
+          type: string
+          description: Relative path of the folder from user's root directory
+          example: "/documents/invoices"
+        fileCount:
+          type: integer
+          format: int32
+          description: Number of files directly in this folder
+          example: 15
+        subfolderCount:
+          type: integer
+          format: int32
+          description: Number of subfolders in this folder
+          example: 3
+        totalSize:
+          type: integer
+          format: int64
+          description: Total size of all files in this folder (in bytes)
+          example: 1048576
+        lastModified:
+          type: string
+          format: date-time
+          description: Last modification timestamp of the folder
+          example: "2025-10-13T10:30:00Z"
+
+    FolderListResponse:
+      type: object
+      description: Response containing list of folders and current path context
+      required:
+        - folders
+        - currentPath
+      properties:
+        folders:
+          type: array
+          description: List of folders in the current directory
+          items:
+            $ref: "#/components/schemas/FolderInfo"
+        currentPath:
+          type: string
+          description: Current path being browsed relative to user's root
+          example: "/documents"
+        parentPath:
+          type: string
+          description: Parent directory path (null if at root)
+          example: "/"
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []

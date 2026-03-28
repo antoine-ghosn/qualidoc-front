@@ -1,0 +1,62 @@
+<div
+  class="d-flex align-items-center justify-content-between m-b-16 p-x-20 p-t-16"
+>
+  <h3>Modifier</h3>
+  <button
+    mat-icon-button
+    mat-dialog-close
+    class="d-flex justify-content-center"
+  >
+    <i-tabler name="x" class="icon-20 d-flex"></i-tabler>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Configuration List">
+      <mat-card class="cardWithShadow p-x-24">
+        <mat-card-content>
+          <app-list-view-settings
+            [type]="type"
+            (typeChange)="handleAction('UPDATE', $event)"
+          ></app-list-view-settings>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="Configuration Arborescence">
+      <mat-card class="cardWithShadow p-x-24">
+        <mat-card-content>
+          <app-tree-view-settings
+            [type]="type"
+            (typeChange)="handleAction('UPDATE', $event)"
+          ></app-tree-view-settings>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div mat-dialog-actions class="p-x-24 p-b-24">
+    <button
+      mat-flat-button
+      [ngClass]="type.id ? 'w-50' : 'w-100'"
+      class="m-l-8 bg-primary text-white"
+      (click)="handleAction('CONFIRM', {})"
+      color="primary"
+    >
+      Modifier
+    </button>
+    <div>
+      <button
+        mat-flat-button
+        class="w-20"
+        class="bg-light-error text-error m-l-8"
+        (click)="handleAction('CANCEL', {})"
+        color="primary"
+      >
+        Annuler
+      </button>
+    </div>
+  </div>
+</mat-dialog-actions>

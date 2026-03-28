@@ -1,0 +1,45 @@
+@if (type(); as docType) {
+<mat-card class="cardWithShadow p-x-24">
+  <mat-card-content>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab label="Configuration List">
+        <mat-card class="cardWithShadow p-x-24">
+          <mat-card-content>
+            <app-list-view-settings
+              [type]="docType"
+              (typeChange)="handleAction('UPDATE', $event)"
+            />
+          </mat-card-content>
+        </mat-card>
+      </mat-tab>
+
+      <mat-tab label="Configuration Arborescence">
+        <mat-card class="cardWithShadow p-x-24">
+          <mat-card-content>
+            <app-tree-view-settings
+              [type]="docType"
+              (typeChange)="handleAction('UPDATE', $event)"
+            />
+          </mat-card-content>
+        </mat-card>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+
+  <mat-card-actions align="end" class="px-6 pb-4">
+    <button
+      mat-raised-button
+      class="rounded-lg font-medium bg-primary text-white"
+      (click)="onSave(docType)"
+    >
+      <mat-icon class="mr-2">save</mat-icon>
+      Sauvegarder les modifications
+    </button>
+  </mat-card-actions>
+</mat-card>
+} @else {
+<div class="flex flex-col items-center justify-center h-full">
+  <mat-spinner></mat-spinner>
+  <p class="mt-4 text-gray-500">Chargement...</p>
+</div>
+}

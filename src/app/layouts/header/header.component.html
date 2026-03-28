@@ -1,0 +1,86 @@
+<mat-toolbar class="topbar">
+  <!-- Hamburger menu -->
+  <button
+    mat-icon-button
+    (click)="onMenuClick()"
+    class="menu-btn"
+    aria-label="Menu"
+  >
+    <i-tabler name="menu-2" class="icon-22 d-flex"></i-tabler>
+  </button>
+
+  <!-- Logo -->
+  <a [routerLink]="['/ged']" class="branding-link">
+    <span class="brand-name">Qualidoc</span>
+  </a>
+
+  <span class="flex-1-auto"></span>
+
+  <!-- Theme toggle -->
+  @if (theme === 'light') {
+    <button mat-icon-button (click)="setlightDark('dark')" class="header-btn">
+      <i-tabler class="d-flex icon-20" name="moon"></i-tabler>
+    </button>
+  } @else {
+    <button mat-icon-button (click)="setlightDark('light')" class="header-btn">
+      <i-tabler class="d-flex icon-20" name="sun"></i-tabler>
+    </button>
+  }
+
+  <!-- Language toggle -->
+  <button mat-icon-button (click)="lang.toggle()" class="header-btn lang-btn">
+    {{ lang.lang() === 'fr' ? 'EN' : 'FR' }}
+  </button>
+
+  <!-- Notification -->
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="notificationmenu"
+    aria-label="Notifications"
+    class="header-btn position-relative"
+  >
+    <i-tabler name="bell" class="icon-20 d-flex"></i-tabler>
+    <div class="notify">
+      <span class="heartbit"></span>
+      <span class="point"></span>
+    </div>
+  </button>
+  <mat-menu #notificationmenu="matMenu" xPosition="before" class="topbar-dd cardWithShadow dd-notifications">
+    <app-notification></app-notification>
+  </mat-menu>
+
+  <!-- Profile -->
+  <button
+    [matMenuTriggerFor]="profilemenu"
+    class="profile-btn"
+  >
+    <div class="user-avatar">
+      {{ (user$()?.firstName || 'D')[0] }}{{ (user$()?.lastName || 'I')[0] }}
+    </div>
+  </button>
+  <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow dd-notifications" xPosition="before">
+    <ng-container *ngIf="user$() as user">
+      <div class="p-x-16 p-y-16 b-b-1">
+        <div class="d-flex align-items-center" style="gap: 12px;">
+          <div class="user-avatar user-avatar-lg">
+            {{ (user.firstName || 'D')[0] }}{{ (user.lastName || 'I')[0] }}
+          </div>
+          <div>
+            <h6 class="f-s-14 f-w-600 m-0">{{ user.firstName }} {{ user.lastName }}</h6>
+            <span class="f-s-12" style="color: #94a3b8;">{{ user.email }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-x-16 p-y-8">
+        <a class="p-8 text-decoration-none d-block" style="color: #94a3b8; font-size: 0.8rem;">
+          {{ lang.t('header.lastLogin') }} : {{ user.lastAccess }}
+        </a>
+      </div>
+      <div class="p-x-16 p-y-8 b-t-1">
+        <a class="p-8 text-decoration-none d-block cursor-pointer" style="color: #ef4444; font-weight: 600; font-size: 0.85rem;" (click)="signout()">
+          {{ lang.t('header.logout') }}
+        </a>
+      </div>
+    </ng-container>
+  </mat-menu>
+</mat-toolbar>

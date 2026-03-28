@@ -1,0 +1,52 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="row justify-content-between">
+      <div class="col-lg-4">
+        <mat-label class="f-s-12 f-w-600 m-b-8 d-block">Nom</mat-label>
+        <div class="col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput required [value]="category?.name" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-lg-4 align-items-center">
+        <mat-label class="f-s-12 f-w-600 m-b-8 d-block"
+          >category parent</mat-label
+        >
+        <div class="col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select [value]="">
+              @for (type of data$(); track type.name) {
+              <mat-option [value]="type.name">{{ type.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-lg-3 align-content-center row justify-content-between">
+        <div>
+          <button
+            mat-flat-button
+            [ngClass]="category ? 'w-50' : 'w-100'"
+            (click)="onItemClick('Add', {})"
+            color="primary"
+          >
+            {{ category ? "Modifier un category" : "Ajouter un category" }}
+          </button>
+        </div>
+        <ng-container *ngIf="category">
+          <div>
+            <button
+              mat-flat-button
+              class="w-20"
+              (click)="onItemClick('Add', {})"
+              color="primary"
+            >
+              Annuler
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

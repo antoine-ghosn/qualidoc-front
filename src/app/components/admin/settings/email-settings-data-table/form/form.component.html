@@ -1,0 +1,138 @@
+<mat-card class="cardWithShadow">
+  <div class="p-24">
+    <mat-card-title class="m-b-0">Configuration Email</mat-card-title>
+  </div>
+
+  <mat-card-content>
+    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()" (reset)="onCancel()">
+      <div class="row">
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nom</mat-label>
+            <input
+              matInput
+              formControlName="name"
+              placeholder="Name"
+              [errorStateMatcher]="matcher"
+            />
+
+            <mat-error
+              *ngIf="
+                emailForm.get('name')?.hasError('required') &&
+                emailForm.get('name')?.touched
+              "
+            >
+              Le nom de configuration est requis.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Host</mat-label>
+            <input
+              matInput
+              formControlName="host"
+              type="text"
+              placeholder="host"
+            />
+
+            <mat-error *ngIf="emailForm.get('host')?.hasError('required')">
+              L'host est requis.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Port</mat-label>
+            <input
+              matInput
+              formControlName="port"
+              type="number"
+              placeholder="Port"
+            />
+
+            <mat-error *ngIf="emailForm.get('port')?.hasError('required')">
+              L'email est requis.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input
+              matInput
+              formControlName="username"
+              placeholder="Nom d'utilisateur"
+            />
+
+            <mat-error *ngIf="emailForm.get('username')?.hasError('required')">
+              Le nom d'utilisateur est requis.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Protocole</mat-label>
+            <mat-select formControlName="protocol">
+              <mat-option value="IMAP">IMAP</mat-option>
+              <mat-option value="POP3">POP3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Mot de passe</mat-label>
+            <input
+              matInput
+              placeholder="mot de passe"
+              type="password"
+              formControlName="password"
+            />
+
+            <mat-error *ngIf="emailForm.get('password')?.hasError('required')">
+              Le mot de passe est requis.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Confirmer</mat-label>
+            <input
+              matInput
+              formControlName="confirmPassword"
+              type="password"
+              placeholder="Confirmer"
+            />
+
+            <mat-error
+              *ngIf="emailForm.get('confirmPassword')?.hasError('required')"
+            >
+              La confirmation du mot de passe est requise.
+            </mat-error>
+            <mat-error *ngIf="emailForm.hasError('passwordMismatch')">
+              Les mots de passe ne correspondent pas.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-4">
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="emailForm.invalid"
+          >
+            {{ isEdit ? "Modifier" : "Ajouter" }}
+          </button>
+          <ng-container *ngIf="isEdit">
+            <button mat-flat-button class="bg-error text-white" type="reset">
+              Annuler
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

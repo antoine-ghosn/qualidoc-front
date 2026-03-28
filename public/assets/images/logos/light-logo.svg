@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.18 15.28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #dadada;
+        font-family: GillSans-UltraBold, 'Gill Sans Ultra Bold';
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-4 {
+        letter-spacing: -.05em;
+      }
+    </style>
+  </defs>
+  <g id="Calque_1-2" data-name="Calque 1">
+    <text class="cls-1" transform="translate(0 10.47)"><tspan x="0" y="0">K-D</tspan><tspan class="cls-3" x="27" y="0">r</tspan><tspan class="cls-2" x="34.76" y="0">i</tspan><tspan class="cls-4" x="39.65" y="0">v</tspan><tspan x="47.8" y="0">e</tspan></text>
+  </g>
+</svg>

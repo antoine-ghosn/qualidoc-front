@@ -1,0 +1,45 @@
+@if (isLandingPage) {
+  <router-outlet></router-outlet>
+} @else {
+  <div
+    autosize
+    autoFocus
+    [ngClass]="{
+      'sidebarNav-mini': sidenavCollapsed,
+    }"
+    class="page-container"
+  >
+    <app-header
+      (toggleCollapsed)="toggleCollapsed()"
+      (toggleMobileNav)="toggleMobileNav()"
+    ></app-header>
+    <mat-sidenav-container class="mainWrapper">
+      <mat-sidenav
+        #leftsidenav
+        [mode]="isMobile ? 'over' : 'side'"
+        [opened]="sidenavOpened"
+        class="sidebarNav"
+        [fixedInViewport]="isMobile"
+        fixedTopGap="64"
+      >
+        <ng-scrollbar
+          class="position-relative mini-scroll"
+          style="height: calc(100vh - 230px)"
+        >
+          <mat-nav-list class="sidebar-list">
+            @for(item of navItems; track item) {
+            <app-nav-item [item]="item" (notify)="onNavItemClick()">
+            </app-nav-item>
+            }
+          </mat-nav-list>
+        </ng-scrollbar>
+      </mat-sidenav>
+      <mat-sidenav-content class="contentWrapper">
+        <main class="pageWrapper maxWidth">
+          <app-breadcrumb></app-breadcrumb>
+          <router-outlet></router-outlet>
+        </main>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+}

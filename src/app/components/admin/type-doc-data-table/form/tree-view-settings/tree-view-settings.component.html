@@ -1,0 +1,69 @@
+<div class="p-8">
+  <div class="row p-8">
+    <div class="p-8">List des atributs disponible</div>
+    <div
+      cdkDropList
+      id="source-list"
+      class="example-list"
+      cdkDropListOrientation="horizontal"
+      [cdkDropListConnectedTo]="['result-list']"
+      [cdkDropListData]="available_columns"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (column of available_columns; track column) {
+      <div class="example-box" cdkDrag>{{ column }}</div>
+      }
+    </div>
+  </div>
+  <div class="row p-8">
+    <div class="p-8">Hiérarchie des documents</div>
+    <div
+      cdkDropList
+      id="result-list"
+      class="example-list"
+      cdkDropListOrientation="horizontal"
+      [cdkDropListConnectedTo]="['source-list']"
+      [cdkDropListData]="treeViewHierarchy"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (column of treeViewHierarchy; track column) {
+      <div class="example-box" cdkDrag>{{ column }}</div>
+      }
+    </div>
+  </div>
+  <div class="row p-8">
+    <div class="font-semibold text-lg mt-6 mb-2">Format du nœud</div>
+  </div>
+  <div class="row p-8">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Format du nœud</mat-label>
+      <input
+        type="text"
+        matInput
+        (keydown)="openAutocompleteOnBrace($event)"
+        placeholder="Exemple: {name} - {date}"
+        [value]="leafFormat"
+        (input)="onType($event)"
+        [matAutocomplete]="auto"
+        (keydown)="openAutocompleteOnBrace($event)"
+      />
+      <mat-hint>Utilisez les accolades pour insérer des attributs</mat-hint>
+
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [autoActiveFirstOption]="true"
+        (optionSelected)="insertPlaceholder($event, $event.option)"
+      >
+        @for (column of _type.columns; track column) {
+        <mat-option [value]="column.name">
+          {{ "{" + column.name + "}" }}
+        </mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div class="text-sm text-gray-600 mt-2">
+      Aperçu : {{ leafFormat ? formatLeaf(leafFormat, exampleData) : "" }}
+    </div>
+  </div>
+</div>

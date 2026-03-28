@@ -1,0 +1,73 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="row justify-content-between">
+    <div class="col-lg-3 align-content-center">
+      <div class="col-sm-12">
+        @if (flow === 'import') {
+        <mat-form-field appearance="outline" class="w-30">
+          <mat-label>{{ lang.t('transfer.folder') }}</mat-label>
+          <input type="text" formControlName="base_directory" matInput required />
+        </mat-form-field>
+        } @else {
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ lang.t('transfer.folder') }}</mat-label>
+          <mat-select [value]="" formControlName="base_directory" required>
+            @for (folder of folders; track folder.name) {
+            <mat-option [value]="folder.name">{{ folder.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        }
+      </div>
+    </div>
+
+    <div class="col-lg-3 align-content-center">
+      <div class="col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ lang.t('transfer.connectorType') }}</mat-label>
+          <mat-select [value]="connectorType" (selectionChange)="OnItemchange($any($event).value)" required>
+            @for (type of connectorTypes; track type) {
+            <mat-option [value]="type">{{ type }}</mat-option>
+            } @if (flow === 'import') {
+            <mat-option value="LOCAL_IMPORT">Local</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    @if (!isLocalImport) {
+    <div class="col-lg-3 align-content-center">
+      <div class="col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ lang.t('transfer.connector') }}</mat-label>
+          <mat-select formControlName="connector" required>
+            @for (connector of connectors; track connector.id) {
+            <mat-option [value]="connector.id">{{ connector.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    } @if (isLocalImport && flow === 'import') {
+    <div class="col-lg-3 align-content-center">
+      <div class="col-sm-12">
+        <button mat-stroked-button color="primary" type="button" (click)="fileInput.click()">
+          {{ lang.t('transfer.selectFiles') }}
+        </button>
+        <input #fileInput type="file" multiple hidden (change)="onFilesSelected($event)" />
+        <div *ngIf="selectedFiles.length > 0" class="mt-2 small text-muted">
+          {{ selectedFiles.length }} {{ lang.t('transfer.filesSelected') }}
+        </div>
+      </div>
+    </div>
+    }
+
+    <div class="col-lg-3 align-content-center">
+      <div class="col-sm-12">
+        <button mat-flat-button class="w-100" color="primary" type="submit">
+          {{ flow | uppercase }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,78 @@
+<mat-card class="cardWithShadow">
+  <div class="p-24">
+    <mat-card-title class="m-b-0">Configuration Serveur</mat-card-title>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="serverForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nom</mat-label>
+            <input
+              matInput
+              formControlName="name"
+              placeholder="Nom"
+              required
+            />
+         
+          </mat-form-field>
+
+          <mat-error
+            *ngIf="
+              serverForm.get('base_directory')?.dirty &&
+              serverForm.get('base_directory')?.hasError('required')
+            "
+          >
+            Champ requis
+          </mat-error>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Dossier</mat-label>
+            <input
+              matInput
+              formControlName="base_directory"
+              placeholder="Dossier"
+              required
+            />
+         
+          </mat-form-field>
+
+          <mat-error
+            *ngIf="
+              serverForm.get('base_directory')?.dirty &&
+              serverForm.get('base_directory')?.hasError('required')
+            "
+          >
+            Champ requis
+          </mat-error>
+        </div>
+
+        <div class="col-sm-4">
+          <div
+            class="d-flex align-items-end justify-content-end gap-8 m-t-10 p-t-20"
+          >
+            <button
+              mat-flat-button
+              color="primary"
+              type="submit"
+              [disabled]="serverForm.invalid"
+            >
+              {{ isEdit ? "Modifier" : "Ajouter" }}
+            </button>
+            <ng-container *ngIf="isEdit">
+              <button
+                mat-flat-button
+                class="bg-error text-white"
+                type="button"
+                (click)="onCancel()"
+              >
+                Annuler
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

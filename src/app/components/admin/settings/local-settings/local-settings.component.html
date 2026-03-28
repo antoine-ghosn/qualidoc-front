@@ -1,0 +1,36 @@
+<mat-card class="cardWithShadow">
+  <div class="p-24">
+    <mat-card-title class="m-b-0">Configuration Local</mat-card-title>
+  </div>
+  <mat-card-content>
+    <form>
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Limite de taille (Mo)</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              [(ngModel)]="_localSettings.size_limit"
+              name="size_limit"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <div
+            class="d-flex align-items-end justify-content-end gap-8 m-t-10 p-t-20"
+          >
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="updateLocalSettings()"
+            >
+              Modifier
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

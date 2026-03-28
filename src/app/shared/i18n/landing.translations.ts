@@ -1,0 +1,355 @@
+export const landingTranslations: Record<string, Record<string, string>> = {
+  fr: {
+    // Hero
+    badge: 'GITEX AFRICA 2026',
+    title: 'Vos documents arrivent.\nL\'IA les qualifie.',
+    subtitle: 'Connecteurs temps réel + Qualification IA personnalisable.\nImmobilier, juridique, comptabilité, santé — chaque métier.',
+    btnPitch: 'Pitch',
+    btnDemo: 'Démo live',
+    langToggle: 'EN',
+
+    // Quotes
+    quote1: '"On reçoit 200 mails par jour. Sans qualification auto, c\'est le chaos."',
+    quote2: '"On a retrouvé en 2 clics un bail perdu depuis 3 ans."',
+    quote3: '"Chaque document qui arrive est immédiatement classé. Sans intervention humaine."',
+
+    // Features
+    featuresTitle: 'Ce qui nous rend uniques',
+    feat1Title: 'Connecteur Mail Live',
+    feat1Desc: 'Un mail arrive ? Les pièces jointes sont captées, qualifiées et classées instantanément par l\'IA.',
+    feat2Title: 'Connecteur FTP/NAS',
+    feat2Desc: 'Vos serveurs de fichiers sont scannés en continu. Chaque nouveau document est qualifié automatiquement.',
+    feat3Title: 'Qualification IA',
+    feat3Desc: 'L\'IA lit, comprend et classe chaque document : type, catégorie, métadonnées. Zéro effort humain.',
+    feat4Title: 'Recherche Instantanée',
+    feat4Desc: 'Retrouvez n\'importe quel document parmi des milliers. Full-text + alias intelligents.',
+    feat5Title: 'Suivi Temps Réel',
+    feat5Desc: 'Chaque fichier est tracé : arrivée, qualification, classement. Rien ne passe entre les mailles.',
+    feat6Title: 'Multi-Tenant',
+    feat6Desc: 'Chaque client, chaque agence a son espace isolé. Données 100% cloisonnées.',
+
+    // How it works
+    howTitle: 'En 3 étapes',
+    how1: 'Ça arrive',
+    how1Desc: 'Mail, FTP, NAS — les documents tombent en temps réel',
+    how2: 'L\'IA qualifie',
+    how2Desc: 'Type, catégorie, métadonnées — automatiquement',
+    how3: 'C\'est classé',
+    how3Desc: 'Retrouvable instantanément, pour toujours',
+    how4: '',
+    how4Desc: '',
+
+    // Stats
+    stat1Value: '0',
+    stat1Label: 'Document perdu',
+    stat2Value: '<1s',
+    stat2Label: 'Qualification IA',
+    stat3Value: '100%',
+    stat3Label: 'Automatisé',
+    stat4Value: '24/7',
+    stat4Label: 'Connecteurs actifs',
+
+    // CTA
+    ctaTitle: 'Arrêtez de chercher. Laissez l\'IA qualifier.',
+    ctaBtn: 'Voir la démo',
+    ctaSubtext: '',
+
+    // Footer
+    footerText: 'INNOLOGYS — Qualification documentaire par IA',
+    footerRights: '2026 Innologys. Tous droits réservés.',
+
+    // --- PITCH SLIDES ---
+
+    // Slide 1 - Title
+    s1Badge: 'GITEX AFRICA 2026',
+    s1Title: 'Qualidoc',
+    s1Subtitle: 'Qualification documentaire par IA\nPour chaque métier. Personnalisable.',
+    s1Footer: 'innologys.fr',
+
+    // Slide 2 - Problem
+    s2Badge: 'LE CONSTAT',
+    s2Title: 'Des milliers de documents.\nPersonne ne sait où ils sont.',
+    s2Stat: '83%',
+    s2StatLabel: 'des entreprises ne retrouvent pas leurs documents critiques en moins de 5 min',
+    s2Point1: 'Mails avec pièces jointes — jamais classées',
+    s2Point2: 'Serveurs FTP avec des milliers de fichiers en vrac',
+    s2Point3: 'Aucune qualification — tout est "Divers" ou "Sans titre"',
+    s2Point4: 'Chaque métier a ses documents critiques — introuvables',
+    s2Result: 'Personne n\'a résolu ça. Jusqu\'à maintenant.',
+
+    // Slide 3 - Solution
+    s3Badge: 'INNOLOGYS',
+    s3Title: 'Les documents arrivent.\nL\'IA les qualifie. C\'est tout.',
+    s3Flow1: 'Mail / FTP / NAS',
+    s3Flow2: 'IA Qualification',
+    s3Flow3: 'Classé & retrouvable',
+    s3Desc: 'Connecteurs temps réel + IA de qualification = zéro document perdu, zéro effort humain.',
+    s3Metric1: '0 intervention',
+    s3Metric2: '100% qualifié',
+    s3Metric3: 'Temps réel',
+
+    // Slide 4 - Connectors
+    s4Badge: 'CONNECTEURS',
+    s4Title: 'Branché sur vos flux existants',
+    s4f1Title: 'Email (IMAP/POP3)',
+    s4f1Desc: 'Un mail arrive → pièces jointes captées et qualifiées en temps réel',
+    s4f2Title: 'FTP / SFTP',
+    s4f2Desc: 'Scan continu de vos serveurs de fichiers. Chaque ajout est détecté.',
+    s4f3Title: 'NAS / Serveur',
+    s4f3Desc: 'Connectez vos partages réseau. Surveillance automatique.',
+    s4f4Title: 'Upload Direct',
+    s4f4Desc: 'Glissez-déposez. L\'IA fait le reste.',
+    s4f5Title: 'Bi-directionnel',
+    s4f5Desc: 'Import ET export. Vers FTP, mail, ZIP.',
+    s4f6Title: 'Temps Réel',
+    s4f6Desc: 'Pas de batch nocturne. Instantané.',
+
+    // Slide 5 - AI Qualification
+    s5Badge: 'IA',
+    s5Title: 'Qualification automatique',
+    s5Frontend: 'Le document arrive',
+    s5Backend: 'L\'IA analyse le contenu',
+    s5Search: 'Type détecté',
+    s5Database: 'Métadonnées extraites',
+    s5Auth: 'Catégorie assignée',
+    s5Realtime: 'Document classé',
+    s5Batch: '',
+    s5Protocols: '',
+    s5Desc: '',
+
+    // Slide 6 - Smart Examples
+    s6Badge: 'EXEMPLES CONCRETS',
+    s6Title: 'L\'IA en action',
+    s6Import: '',
+    s6ImportDesc: '',
+    s6Export: '',
+    s6ExportDesc: '',
+    s6Tracking: '',
+    s6Ex1In: 'scan_contrat_2026.pdf',
+    s6Ex1Out: 'Bail Commercial — SCI Martin — Lot A12 — 1 250€/mois — Expire 2028',
+    s6Ex2In: 'facture_cabinet.pdf',
+    s6Ex2Out: 'Facture — Cabinet Dupont Avocats — Dossier #4521 — 3 800€ HT',
+    s6Ex3In: 'mail-attachment.pdf',
+    s6Ex3Out: 'Bon de commande — Fournisseur TechPro — Réf BC-2026-089 — 12 450€',
+    s6Ex4In: '',
+    s6Ex4Out: '',
+    s6SmartNote: 'Immobilier, juridique, comptabilité, santé... L\'IA s\'adapte à votre métier.',
+
+    // Slide 7 - Scale & Async
+    s7Badge: 'À L\'ÉCHELLE',
+    s7Title: 'Des milliers de fichiers ?\nEn arrière-plan.',
+    s7Point1: 'Jobs asynchrones : des milliers de documents traités en parallèle',
+    s7Point2: 'File d\'attente intelligente : priorités, retry automatique',
+    s7Point3: 'Suivi en temps réel : chaque fichier tracé individuellement',
+    s7Point4: '15 000 docs en 48h — sans ralentir l\'application',
+    s7Point5: 'Background processing : l\'utilisateur ne voit rien, tout est fait',
+    s7Quote: '"On a branché le FTP un vendredi soir. Lundi, tout était qualifié."',
+
+    // Slide 8 - Comparison
+    s8Badge: 'POURQUOI C\'EST UNIQUE',
+    s8Title: 'Ça n\'existe pas encore.',
+    s8Feature: '',
+    s8KDrive: 'Qualidoc',
+    s8SharePoint: 'SharePoint',
+    s8Alfresco: 'Alfresco',
+    s8OpenText: 'OpenText',
+    s8Row1: 'Qualification IA auto',
+    s8Row2: 'Connecteurs temps réel',
+    s8Row3: 'Mail → classé en 1s',
+    s8Row4: 'Async — milliers de fichiers',
+    s8Row5: 'Zéro config utilisateur',
+    s8Row6: 'Déploiement en 1 semaine',
+    s8Row7: 'Coût accessible',
+    s8Row8: '',
+    s8KDriveCost: '',
+    s8SharePointCost: '',
+    s8AlfrescoCost: '',
+    s8OpenTextCost: '',
+
+    // Slide 9 - Contact
+    s10Badge: 'GITEX AFRICA 2026',
+    s10Title: 'Qualidoc',
+    s10Subtitle: 'Qualification IA personnalisable\npour chaque métier.',
+    s10Web: 'innologys.fr',
+    s10Email: 'contact@innologys.fr',
+    s10Closing: 'Merci',
+    s10ClosingSub: 'INNOLOGYS — innologys.fr',
+  },
+
+  en: {
+    // Hero
+    badge: 'GITEX AFRICA 2026',
+    title: 'Your documents arrive.\nAI qualifies them.',
+    subtitle: 'Real-time connectors + Customizable AI qualification.\nReal estate, legal, accounting, healthcare — every industry.',
+    btnPitch: 'Pitch',
+    btnDemo: 'Live Demo',
+    langToggle: 'FR',
+
+    // Quotes
+    quote1: '"We receive 200 emails a day. Without auto-qualification, it\'s chaos."',
+    quote2: '"We found a lease lost for 3 years in 2 clicks."',
+    quote3: '"Every incoming document is instantly classified. No human intervention."',
+
+    // Features
+    featuresTitle: 'What makes us unique',
+    feat1Title: 'Live Mail Connector',
+    feat1Desc: 'Email arrives? Attachments are captured, qualified and filed instantly by AI.',
+    feat2Title: 'FTP/NAS Connector',
+    feat2Desc: 'Your file servers are continuously scanned. Every new document is automatically qualified.',
+    feat3Title: 'AI Qualification',
+    feat3Desc: 'AI reads, understands and classifies each document: type, category, metadata. Zero human effort.',
+    feat4Title: 'Instant Search',
+    feat4Desc: 'Find any document among thousands. Full-text + smart aliases.',
+    feat5Title: 'Real-Time Tracking',
+    feat5Desc: 'Every file is traced: arrival, qualification, filing. Nothing slips through.',
+    feat6Title: 'Multi-Tenant',
+    feat6Desc: 'Each client, each agency has its isolated space. 100% compartmentalized data.',
+
+    // How it works
+    howTitle: 'In 3 steps',
+    how1: 'It arrives',
+    how1Desc: 'Mail, FTP, NAS — documents flow in real-time',
+    how2: 'AI qualifies',
+    how2Desc: 'Type, category, metadata — automatically',
+    how3: 'It\'s filed',
+    how3Desc: 'Instantly searchable, forever',
+    how4: '',
+    how4Desc: '',
+
+    // Stats
+    stat1Value: '0',
+    stat1Label: 'Lost documents',
+    stat2Value: '<1s',
+    stat2Label: 'AI qualification',
+    stat3Value: '100%',
+    stat3Label: 'Automated',
+    stat4Value: '24/7',
+    stat4Label: 'Active connectors',
+
+    // CTA
+    ctaTitle: 'Stop searching. Let AI qualify.',
+    ctaBtn: 'See the demo',
+    ctaSubtext: '',
+
+    // Footer
+    footerText: 'INNOLOGYS — AI-powered document qualification',
+    footerRights: '2026 Innologys. All rights reserved.',
+
+    // --- PITCH SLIDES ---
+
+    // Slide 1 - Title
+    s1Badge: 'GITEX AFRICA 2026',
+    s1Title: 'Qualidoc',
+    s1Subtitle: 'AI-powered document qualification\nFor every industry. Fully customizable.',
+    s1Footer: 'innologys.fr',
+
+    // Slide 2 - Problem
+    s2Badge: 'THE REALITY',
+    s2Title: 'Thousands of documents.\nNobody knows where they are.',
+    s2Stat: '83%',
+    s2StatLabel: 'of companies can\'t find critical documents in under 5 minutes',
+    s2Point1: 'Emails with attachments — never classified',
+    s2Point2: 'FTP servers with thousands of unorganized files',
+    s2Point3: 'No qualification — everything is "Misc" or "Untitled"',
+    s2Point4: 'Every industry has critical documents — unfindable',
+    s2Result: 'Nobody solved this. Until now.',
+
+    // Slide 3 - Solution
+    s3Badge: 'INNOLOGYS',
+    s3Title: 'Documents arrive.\nAI qualifies them. That\'s it.',
+    s3Flow1: 'Mail / FTP / NAS',
+    s3Flow2: 'AI Qualification',
+    s3Flow3: 'Filed & searchable',
+    s3Desc: 'Real-time connectors + AI qualification = zero lost documents, zero human effort.',
+    s3Metric1: '0 intervention',
+    s3Metric2: '100% qualified',
+    s3Metric3: 'Real-time',
+
+    // Slide 4 - Connectors
+    s4Badge: 'CONNECTORS',
+    s4Title: 'Plugs into your existing flows',
+    s4f1Title: 'Email (IMAP/POP3)',
+    s4f1Desc: 'Email arrives → attachments captured and qualified in real-time',
+    s4f2Title: 'FTP / SFTP',
+    s4f2Desc: 'Continuous scan of your file servers. Every addition detected.',
+    s4f3Title: 'NAS / Server',
+    s4f3Desc: 'Connect your network shares. Automatic monitoring.',
+    s4f4Title: 'Direct Upload',
+    s4f4Desc: 'Drag and drop. AI does the rest.',
+    s4f5Title: 'Bi-directional',
+    s4f5Desc: 'Import AND export. To FTP, email, ZIP.',
+    s4f6Title: 'Real-Time',
+    s4f6Desc: 'No nightly batch. Instant.',
+
+    // Slide 5 - AI Qualification
+    s5Badge: 'AI',
+    s5Title: 'Automatic qualification',
+    s5Frontend: 'Document arrives',
+    s5Backend: 'AI analyzes content',
+    s5Search: 'Type detected',
+    s5Database: 'Metadata extracted',
+    s5Auth: 'Category assigned',
+    s5Realtime: 'Document filed',
+    s5Batch: '',
+    s5Protocols: '',
+    s5Desc: '',
+
+    // Slide 6 - Smart Examples
+    s6Badge: 'CONCRETE EXAMPLES',
+    s6Title: 'AI in action',
+    s6Import: '',
+    s6ImportDesc: '',
+    s6Export: '',
+    s6ExportDesc: '',
+    s6Tracking: '',
+    s6Ex1In: 'scan_contract_2026.pdf',
+    s6Ex1Out: 'Commercial Lease — SCI Martin — Unit A12 — €1,250/mo — Expires 2028',
+    s6Ex2In: 'invoice_lawfirm.pdf',
+    s6Ex2Out: 'Invoice — Dupont Law Firm — Case #4521 — €3,800',
+    s6Ex3In: 'mail-attachment.pdf',
+    s6Ex3Out: 'Purchase Order — Supplier TechPro — Ref PO-2026-089 — €12,450',
+    s6Ex4In: '',
+    s6Ex4Out: '',
+    s6SmartNote: 'Real estate, legal, accounting, healthcare... AI adapts to your business.',
+
+    // Slide 7 - Scale & Async
+    s7Badge: 'AT SCALE',
+    s7Title: 'Thousands of files?\nIn the background.',
+    s7Point1: 'Async jobs: thousands of documents processed in parallel',
+    s7Point2: 'Smart queue: priorities, automatic retry',
+    s7Point3: 'Real-time tracking: each file traced individually',
+    s7Point4: '15,000 docs in 48h — without slowing the app',
+    s7Point5: 'Background processing: user sees nothing, everything is done',
+    s7Quote: '"We connected the FTP on Friday evening. Monday, everything was qualified."',
+
+    // Slide 8 - Comparison
+    s8Badge: 'WHY IT\'S UNIQUE',
+    s8Title: 'This doesn\'t exist yet.',
+    s8Feature: '',
+    s8KDrive: 'Qualidoc',
+    s8SharePoint: 'SharePoint',
+    s8Alfresco: 'Alfresco',
+    s8OpenText: 'OpenText',
+    s8Row1: 'Auto AI qualification',
+    s8Row2: 'Real-time connectors',
+    s8Row3: 'Mail → filed in 1s',
+    s8Row4: 'Async — thousands of files',
+    s8Row5: 'Zero user config',
+    s8Row6: 'Deploy in 1 week',
+    s8Row7: 'Affordable',
+    s8Row8: '',
+    s8KDriveCost: '',
+    s8SharePointCost: '',
+    s8AlfrescoCost: '',
+    s8OpenTextCost: '',
+
+    // Slide 9 - Contact
+    s10Badge: 'GITEX AFRICA 2026',
+    s10Title: 'Qualidoc',
+    s10Subtitle: 'Customizable AI qualification\nfor every industry.',
+    s10Web: 'innologys.fr',
+    s10Email: 'contact@innologys.fr',
+    s10Closing: 'Thank you',
+    s10ClosingSub: 'Booth [X] — Hall [X] — GITEX Dubai',
+  },
+};

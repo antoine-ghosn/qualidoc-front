@@ -1,0 +1,1559 @@
+// ==================== VARIABLES ====================
+$bg-dark: #0a0a0a;
+$bg-navy: #0F172A;
+$bg-card: rgba(255, 255, 255, 0.04);
+$accent-teal: #2DD4BF;
+$accent-gold: #D4AF37;
+$accent-red: #FF6B6B;
+$text-white: #ffffff;
+$text-muted: rgba(255, 255, 255, 0.6);
+$text-dim: rgba(255, 255, 255, 0.4);
+$border-subtle: rgba(255, 255, 255, 0.1);
+$font-heading: 'Cormorant Garamond', serif;
+$font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
+
+// ==================== ANIMATIONS ====================
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba($accent-teal, 0.4); }
+  50% { box-shadow: 0 0 20px 8px rgba($accent-teal, 0.15); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes quoteIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes trackingPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+// ==================== GLOBAL ====================
+:host {
+  display: block;
+  background: $bg-dark;
+  color: $text-white;
+  font-family: $font-body;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.section-title {
+  font-family: $font-heading;
+  font-size: 2.6rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: $text-white;
+  animation: fadeIn 0.6s ease;
+}
+
+// ==================== HERO SECTION ====================
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, $bg-dark 0%, #0d1b2a 25%, $bg-navy 50%, #1a1a2e 75%, $bg-dark 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 50%, rgba($accent-teal, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba($accent-gold, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 60% 80%, rgba($accent-teal, 0.05) 0%, transparent 45%);
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba($bg-dark, 0.4);
+  z-index: 1;
+}
+
+.hero-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem;
+  z-index: 10;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  height: 44px;
+  opacity: 0.95;
+  animation: fadeIn 0.6s ease;
+}
+
+.lang-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: $text-white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+  animation: fadeIn 0.8s ease;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba($accent-teal, 0.15);
+  color: $accent-teal;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  border: 1px solid rgba($accent-teal, 0.3);
+}
+
+.hero-title {
+  font-family: $font-heading;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1;
+
+  .title-accent {
+    color: $accent-teal;
+    font-weight: 500;
+  }
+}
+
+.hero-subtitle {
+  font-family: $font-heading;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  color: $text-muted;
+  max-width: 600px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: $accent-teal;
+  color: $bg-dark;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+  text-align: center;
+
+  .btn-icon {
+    font-size: 0.75rem;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba($accent-teal, 0.35);
+  }
+
+  &.btn-large {
+    padding: 1.1rem 3rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  color: $text-white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  text-align: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+  }
+}
+
+.pitch-link {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-top: 0.25rem;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.hero-quotes {
+  position: absolute;
+  bottom: 5rem;
+  z-index: 10;
+  text-align: center;
+  min-height: 2.5rem;
+
+  .quote {
+    font-family: $font-heading;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: $text-dim;
+    animation: quoteIn 0.5s ease;
+    margin: 0;
+  }
+}
+
+.hero-footer {
+  position: absolute;
+  bottom: 1.5rem;
+  z-index: 10;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: $text-dim;
+  text-transform: uppercase;
+}
+
+// ==================== HERO STATS ====================
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.hero-stat-value {
+  font-family: $font-heading;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: $accent-teal;
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: 0.65rem;
+  color: $text-dim;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+// ==================== (removed sections — landing is now single-screen) ====================
+
+// ==================== GITEX PITCH VISUAL STYLES ====================
+.gx-slide {
+  gap: 0.75rem;
+}
+
+.gx-logo-ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba($accent-teal, 0.12);
+  border: 2px solid $accent-teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2.5s ease infinite;
+
+  span {
+    font-family: $font-heading;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: $accent-teal;
+  }
+
+  &.gx-ring-gold {
+    background: rgba($accent-gold, 0.1);
+    border-color: $accent-gold;
+    span { color: $accent-gold; }
+  }
+}
+
+.gx-hero-title {
+  font-family: $font-heading;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  margin: 0;
+  line-height: 1;
+}
+
+.gx-hero-sub {
+  font-family: $font-heading;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.gx-accent {
+  color: $accent-teal;
+  font-weight: 500;
+}
+
+.gx-by {
+  font-size: 0.7rem;
+  color: $text-dim;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+// Problem cards
+.gx-cards-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.gx-problem-card {
+  background: rgba($accent-red, 0.05);
+  border: 1px solid rgba($accent-red, 0.15);
+  border-radius: 14px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  flex: 1;
+  min-width: 150px;
+  max-width: 200px;
+  animation: fadeIn 0.5s ease both;
+
+  .gx-card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h4 {
+    font-family: $font-heading;
+    font-size: 1.1rem;
+    margin: 0 0 0.3rem;
+    color: $accent-red;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 0.75rem;
+    color: $text-muted;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+// Steps
+.gx-steps {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.gx-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: $bg-card;
+  border: 1px solid $border-subtle;
+  border-radius: 12px;
+  padding: 1rem;
+  animation: fadeIn 0.5s ease both;
+  min-width: 180px;
+}
+
+.gx-step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+
+  &.gx-num-gold { border-color: $accent-gold; color: $accent-gold; }
+  &.gx-num-teal { border-color: $accent-teal; color: $accent-teal; }
+}
+
+.gx-step-content {
+  h4 { font-size: 0.9rem; margin: 0; font-weight: 600; }
+  p { font-size: 0.7rem; color: $text-muted; margin: 0.15rem 0 0; }
+}
+
+.gx-step-arrow {
+  color: $accent-teal;
+  font-size: 1.2rem;
+  opacity: 0.4;
+}
+
+// Demo items
+.gx-demo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.gx-demo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: fadeIn 0.4s ease both;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gx-demo-before {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: rgba($accent-red, 0.05);
+  border: 1px solid rgba($accent-red, 0.12);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  min-width: 150px;
+
+  code { font-size: 0.7rem; color: rgba(255,255,255,0.6); }
+}
+
+.gx-demo-after {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  background: rgba($accent-teal, 0.05);
+  border: 1px solid rgba($accent-teal, 0.15);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  flex: 1;
+  min-width: 200px;
+
+  strong { font-size: 0.85rem; color: $accent-teal; }
+  span:last-child { font-size: 0.7rem; color: $text-muted; }
+}
+
+.gx-demo-tag {
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $accent-red;
+
+  &.gx-tag-green { color: $accent-teal; }
+}
+
+.gx-demo-arrow {
+  color: $accent-gold;
+  font-size: 1.2rem;
+}
+
+.gx-note {
+  font-size: 0.8rem;
+  color: $accent-gold;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+// Value grid
+.gx-value-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.gx-value-card {
+  background: rgba($accent-teal, 0.06);
+  border: 1px solid rgba($accent-teal, 0.2);
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+  min-width: 130px;
+  animation: scaleIn 0.4s ease both;
+}
+
+.gx-value-num {
+  display: block;
+  font-family: $font-heading;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: $accent-teal;
+  line-height: 1;
+}
+
+.gx-value-label {
+  display: block;
+  font-size: 0.65rem;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.3rem;
+  line-height: 1.3;
+}
+
+// Close slide
+.gx-close {
+  gap: 0.75rem;
+}
+
+.gx-close-title {
+  font-family: $font-heading;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  margin: 0;
+}
+
+.gx-close-tagline {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .gx-cards-row { flex-direction: column; align-items: center; }
+  .gx-problem-card { max-width: 100%; }
+  .gx-steps { flex-direction: column; }
+  .gx-step-arrow { transform: rotate(90deg); }
+  .gx-demo-item { flex-direction: column; }
+  .gx-demo-arrow { transform: rotate(90deg); }
+  .gx-value-grid { flex-direction: column; align-items: center; }
+  .gx-logo-ring { width: 60px; height: 60px; span { font-size: 1.6rem; } }
+}
+
+// ==================== PITCH MODAL ====================
+.pitch-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.pitch-modal {
+  position: relative;
+  width: 95vw;
+  max-width: 920px;
+  max-height: 92vh;
+  background: linear-gradient(135deg, #0a0a1a 0%, $bg-navy 50%, #0a0a1a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: scaleIn 0.4s ease;
+}
+
+.pitch-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: $text-muted;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+
+  &:hover {
+    color: $text-white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.pitch-progress {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+
+  .pitch-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, $accent-teal, $accent-gold);
+    transition: width 0.4s ease;
+    border-radius: 0 3px 3px 0;
+  }
+}
+
+.slide-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 3rem 3rem 1.5rem;
+}
+
+.slide-counter {
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  color: $text-dim;
+  letter-spacing: 0.15em;
+}
+
+// ==================== SLIDE NAVIGATION ====================
+.pitch-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.nav-arrow {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid $border-subtle;
+  color: $text-white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:hover:not(.disabled) {
+    background: rgba($accent-teal, 0.15);
+    border-color: $accent-teal;
+  }
+
+  &.disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
+}
+
+.nav-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+
+  &.active {
+    background: $accent-teal;
+    transform: scale(1.3);
+  }
+
+  &:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+// ==================== SLIDE COMMON ====================
+.slide {
+  animation: fadeIn 0.5s ease;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.slide-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+  background: rgba($accent-teal, 0.12);
+  color: $accent-teal;
+  border: 1px solid rgba($accent-teal, 0.25);
+
+  &.red {
+    background: rgba($accent-red, 0.12);
+    color: $accent-red;
+    border-color: rgba($accent-red, 0.25);
+  }
+
+  &.gold {
+    background: rgba($accent-gold, 0.12);
+    color: $accent-gold;
+    border-color: rgba($accent-gold, 0.25);
+  }
+
+  &.teal {
+    background: rgba($accent-teal, 0.12);
+    color: $accent-teal;
+    border-color: rgba($accent-teal, 0.25);
+  }
+}
+
+.slide-title {
+  font-family: $font-heading;
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0 0 1.5rem;
+}
+
+.slide-desc {
+  font-size: 0.9rem;
+  color: $text-muted;
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+.slide-separator {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, $accent-teal, $accent-gold);
+  margin: 1rem 0;
+
+  &.short {
+    width: 40px;
+  }
+}
+
+// ==================== SLIDE 1: TITLE ====================
+.slide-title-page {
+  gap: 0.5rem;
+}
+
+.slide-main-title {
+  font-family: $font-heading;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300;
+  margin: 0.5rem 0;
+  line-height: 1;
+
+  .accent {
+    color: $accent-teal;
+    font-weight: 500;
+  }
+}
+
+.slide-main-subtitle {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.slide-footer-text {
+  font-size: 0.85rem;
+  color: $accent-gold;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+// ==================== SLIDE 2: PROBLEM ====================
+.stat-highlight {
+  background: rgba($accent-red, 0.08);
+  border: 1px solid rgba($accent-red, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem 2rem;
+  margin-bottom: 1.5rem;
+  animation: scaleIn 0.5s ease 0.2s both;
+
+  .big-stat {
+    display: block;
+    font-family: $font-heading;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: $accent-red;
+  }
+
+  .stat-desc {
+    font-size: 0.85rem;
+    color: $text-muted;
+  }
+}
+
+.problem-points {
+  width: 100%;
+  max-width: 550px;
+  text-align: left;
+}
+
+.problem-point {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  animation: fadeIn 0.4s ease both;
+
+  .point-x {
+    color: $accent-red;
+    font-size: 1.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  span:last-child {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.result-box {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  animation: fadeIn 0.5s ease 0.8s both;
+
+  &.red {
+    background: rgba($accent-red, 0.1);
+    border: 1px solid rgba($accent-red, 0.25);
+    color: $accent-red;
+  }
+
+  &.teal-box {
+    background: rgba($accent-teal, 0.1);
+    border: 1px solid rgba($accent-teal, 0.25);
+    color: $accent-teal;
+    font-weight: 600;
+  }
+}
+
+// ==================== SLIDE 3: SOLUTION ====================
+.solution-flow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flow-box {
+  padding: 0.9rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  animation: scaleIn 0.4s ease both;
+
+  &.sources {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid $border-subtle;
+  }
+
+  &.engine {
+    background: rgba($accent-teal, 0.15);
+    border: 1px solid rgba($accent-teal, 0.4);
+    color: $accent-teal;
+    animation: pulse 2s ease infinite;
+  }
+
+  &.result {
+    background: rgba($accent-gold, 0.12);
+    border: 1px solid rgba($accent-gold, 0.3);
+    color: $accent-gold;
+  }
+}
+
+.flow-arrow-h {
+  color: $accent-teal;
+  font-size: 1.4rem;
+  opacity: 0.6;
+}
+
+.metrics-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.metric-card {
+  background: rgba($accent-teal, 0.08);
+  border: 1px solid rgba($accent-teal, 0.2);
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $accent-teal;
+  animation: slideUp 0.4s ease both;
+}
+
+// ==================== SLIDE 4: FEATURES MINI ====================
+.features-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 700px;
+}
+
+.feature-mini {
+  background: $bg-card;
+  border: 1px solid $border-subtle;
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: left;
+  animation: fadeIn 0.4s ease both;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: rgba($accent-teal, 0.3);
+  }
+
+  h4 {
+    font-family: $font-heading;
+    font-size: 1.1rem;
+    margin: 0 0 0.4rem;
+    color: $accent-teal;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 0.78rem;
+    color: $text-muted;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+// ==================== SLIDE 5: AI PIPELINE ====================
+.ai-pipeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: $bg-card;
+  border: 1px solid $border-subtle;
+  border-radius: 10px;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  animation: scaleIn 0.4s ease both;
+  min-width: 220px;
+
+  &.final {
+    background: rgba($accent-teal, 0.12);
+    border-color: rgba($accent-teal, 0.3);
+    color: $accent-teal;
+    font-weight: 600;
+    animation: pulse 2s ease infinite;
+  }
+
+  &.small {
+    min-width: auto;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+.pipe-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba($accent-gold, 0.15);
+  border: 1px solid rgba($accent-gold, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: $accent-gold;
+  flex-shrink: 0;
+}
+
+.pipe-arrow {
+  color: $accent-teal;
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
+.pipeline-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ai-examples {
+  background: rgba($accent-gold, 0.06);
+  border: 1px solid rgba($accent-gold, 0.15);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  font-family: $font-body;
+  font-size: 0.85rem !important;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-title {
+  font-size: clamp(2rem, 5vw, 3.5rem) !important;
+  color: $accent-teal;
+}
+
+// ==================== SLIDE 6: SMART EXAMPLES ====================
+.examples-list {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.example-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeIn 0.4s ease both;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.example-in {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba($accent-red, 0.06);
+  border: 1px solid rgba($accent-red, 0.15);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  min-width: 200px;
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.7);
+    word-break: break-all;
+  }
+}
+
+.example-out {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba($accent-teal, 0.06);
+  border: 1px solid rgba($accent-teal, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  flex: 1;
+  min-width: 200px;
+
+  span:last-child {
+    font-size: 0.78rem;
+    color: $accent-teal;
+    font-weight: 500;
+  }
+}
+
+.example-label {
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+
+  .example-in & {
+    background: rgba($accent-red, 0.15);
+    color: $accent-red;
+  }
+
+  .example-out & {
+    background: rgba($accent-teal, 0.15);
+    color: $accent-teal;
+  }
+}
+
+.example-arrow {
+  color: $accent-gold;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.smart-note {
+  background: rgba($accent-gold, 0.06);
+  border: 1px solid rgba($accent-gold, 0.15);
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.82rem !important;
+  color: rgba($accent-gold, 0.85);
+  font-weight: 500;
+  margin-top: 1.5rem;
+}
+
+// ==================== SLIDE 6: TRANSFER ====================
+.transfer-dual {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.transfer-card {
+  background: $bg-card;
+  border: 1px solid $border-subtle;
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-width: 200px;
+  flex: 1;
+  max-width: 260px;
+  animation: fadeIn 0.5s ease both;
+
+  .transfer-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    font-family: $font-heading;
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin: 0;
+  }
+
+  &.import-card {
+    border-color: rgba($accent-teal, 0.2);
+    h3 { color: $accent-teal; }
+  }
+
+  &.export-card {
+    border-color: rgba($accent-gold, 0.2);
+    h3 { color: $accent-gold; }
+  }
+}
+
+.transfer-center {
+  .center-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba($accent-teal, 0.15);
+    border: 2px solid $accent-teal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s ease infinite;
+
+    span {
+      font-family: $font-heading;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: $accent-teal;
+    }
+  }
+}
+
+.tracking-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba($accent-teal, 0.06);
+  border: 1px solid rgba($accent-teal, 0.15);
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+
+  .tracking-pulse {
+    width: 10px;
+    height: 10px;
+    background: $accent-teal;
+    border-radius: 50%;
+    animation: trackingPulse 1.5s ease infinite;
+    flex-shrink: 0;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin: 0;
+  }
+}
+
+// ==================== SLIDE 7: SECURITY ====================
+.security-points {
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.security-point {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  animation: fadeIn 0.4s ease both;
+
+  .check {
+    color: $accent-teal;
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  span:last-child {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.slide-quote {
+  font-family: $font-heading;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba($accent-gold, 0.8);
+  border-left: 3px solid $accent-gold;
+  padding: 0.75rem 1.5rem;
+  margin: 1rem 0 0;
+  text-align: left;
+  max-width: 500px;
+  animation: fadeIn 0.5s ease 0.8s both;
+}
+
+// ==================== SLIDE 8: COMPARISON ====================
+.compare-table {
+  width: 100%;
+  max-width: 700px;
+  border: 1px solid $border-subtle;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.compare-header {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.65rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid $border-subtle;
+
+  .highlight {
+    color: $accent-teal;
+  }
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  padding: 0.55rem 0.5rem;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  animation: fadeIn 0.3s ease both;
+  color: rgba(255, 255, 255, 0.75);
+
+  .highlight {
+    color: $accent-teal;
+    font-weight: 700;
+  }
+
+  &.cost-row {
+    border-top: 1px solid $border-subtle;
+    background: rgba(255, 255, 255, 0.02);
+
+    .cost-good { color: $accent-teal; font-weight: 600; }
+    .cost-bad { color: $accent-red; }
+  }
+}
+
+// ==================== SLIDE 9: ROADMAP ====================
+.roadmap-timeline {
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  position: relative;
+  padding-left: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, $accent-teal, $accent-gold);
+    opacity: 0.4;
+  }
+}
+
+.roadmap-item {
+  display: flex;
+  gap: 1.2rem;
+  padding: 0.8rem 0;
+  animation: fadeIn 0.4s ease both;
+  position: relative;
+
+  .roadmap-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: $accent-teal;
+    border: 3px solid $bg-navy;
+    position: absolute;
+    left: -2rem;
+    top: 1rem;
+    z-index: 1;
+    animation: dotPulse 2s ease infinite;
+  }
+
+  .roadmap-content {
+    h4 {
+      font-family: $font-heading;
+      font-size: 1.1rem;
+      margin: 0 0 0.25rem;
+      color: $accent-teal;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+}
+
+// ==================== SLIDE 10: CONTACT ====================
+.slide-closing-title {
+  font-family: $font-heading;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  margin: 0 0 0.5rem;
+  color: $accent-teal;
+}
+
+.contact-links {
+  display: flex;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: $bg-card;
+  border: 1px solid $border-subtle;
+  border-radius: 10px;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.9rem;
+  animation: fadeIn 0.5s ease both;
+
+  .contact-icon {
+    font-size: 1.2rem;
+  }
+}
+
+.closing-brand {
+  font-size: 0.85rem;
+  color: $accent-gold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+// ==================== RESPONSIVE ====================
+@media (max-width: 768px) {
+  .hero-header {
+    padding: 1rem 1.2rem;
+  }
+
+  .logo { height: 26px; }
+
+  .hero-content {
+    padding: 0 1.2rem;
+    gap: 0.6rem;
+  }
+
+  .hero-title { font-size: 2.6rem; }
+  .hero-subtitle { font-size: 1rem; }
+  .hero-desc { font-size: 0.8rem; line-height: 1.5; }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+    max-width: 240px;
+    align-items: stretch;
+
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      padding: 0.7rem 1.2rem;
+      font-size: 0.82rem;
+    }
+  }
+
+  .hero-stats { gap: 1.2rem; }
+  .hero-stat-value { font-size: 1.4rem; }
+  .hero-stat-label { font-size: 0.55rem; }
+
+  .hero-quotes { bottom: 3.5rem; }
+  .hero-quotes .quote { font-size: 0.78rem; padding: 0 1rem; }
+  .hero-footer { font-size: 0.55rem; }
+
+  // Pitch
+  .slide-container { padding: 1.5rem 1rem 0.5rem; }
+  .slide-main-title { font-size: 2.2rem; }
+  .slide-title { font-size: 1.3rem; }
+  .solution-flow { flex-direction: column; }
+  .flow-arrow-h { transform: rotate(90deg); }
+  .metrics-row { flex-wrap: wrap; justify-content: center; }
+  .features-mini-grid { grid-template-columns: 1fr; }
+  .compare-header, .compare-row { font-size: 0.55rem; padding: 0.3rem 0.15rem; }
+  .nav-dots { gap: 0.25rem; }
+  .pitch-modal { max-height: 95vh; border-radius: 12px; }
+  .example-row { flex-direction: column; gap: 0.25rem; }
+  .example-arrow { transform: rotate(90deg); }
+  .example-in, .example-out { width: 100%; min-width: auto; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-subtitle { font-size: 0.9rem; }
+  .hero-stats { gap: 0.8rem; }
+  .hero-stat-value { font-size: 1.2rem; }
+  .badge { font-size: 0.55rem; padding: 0.25rem 0.7rem; }
+  .slide-badge { font-size: 0.5rem; }
+  .slide-main-title { font-size: 1.8rem; }
+  .pipeline-step { min-width: auto; padding: 0.4rem 0.8rem; font-size: 0.75rem; }
+  .slide-quote { font-size: 0.85rem; padding: 0.4rem 0.8rem; }
+}

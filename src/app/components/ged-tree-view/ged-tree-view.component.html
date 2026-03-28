@@ -1,0 +1,37 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-content class="b-t-1 p-y-24">
+    <mat-tree
+      #tree
+      [dataSource]="dataSource"
+      [childrenAccessor]="childrenAccessor"
+    >
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+        <a
+          href="/assets/files/example.pdf"
+          target="_blank"
+          class="cursor-pointer"
+        >
+          {{ getDocumentNameFormat(node) }}
+          <i-tabler name="download" class="icon-18"></i-tabler>
+        </a>
+      </mat-tree-node>
+      <mat-tree-node
+        *matTreeNodeDef="let node; when: hasChild"
+        matTreeNodePadding
+        matTreeNodeToggle
+        [cdkTreeNodeTypeaheadLabel]="node.category"
+      >
+        <button
+          mat-icon-button
+          matTreeNodeToggle
+          [attr.aria-label]="'Toggle ' + node.category"
+        >
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{ tree.isExpanded(node) ? "expand_more" : "chevron_right" }}
+          </mat-icon>
+        </button>
+        {{ node.category }}
+      </mat-tree-node>
+    </mat-tree>
+  </mat-card-content>
+</mat-card>

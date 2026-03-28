@@ -1,0 +1,72 @@
+<div class="p-x-24 p-y-16 bg-primary">
+  <h6 class="f-s-18 m-b-2 text-white f-w-500">Notification</h6>
+  <p class="m-0 text-white f-s-12 f-w-400">
+    {{ (notifications$ | async)?.length || 0 }} background Task en cours
+  </p>
+</div>
+
+@for (notification of notifications$ | async; track notification.trackingId) {
+<button mat-menu-item class="p-16">
+  <div class="d-flex align-items-center w-100">
+    @if (notification.type === 'TRANSFER') {
+
+    <span
+      class="flex-shrink-0 text-{{ notification.status }} bg-light-{{
+        getColor(notification.flowType)
+      }} rounded-circle icon-40 d-flex align-items-center justify-content-center"
+    >
+      <i-tabler
+        class="icon-20 d-flex"
+        name="{{ getFlowIcon(notification.flowType) }}"
+      ></i-tabler>
+    </span>
+    } @if (notification.type === 'COMPRESSION') {
+
+    <i-tabler class="icon-20 d-flex" name="file-zip"></i-tabler>
+
+    }
+
+    <div class="m-l-16 w-100">
+      <div class="d-flex align-items-center justify-content-between w-100">
+        <h5 class="f-s-14 m-0 lh-sm f-w-500">
+          {{ notification.trackingName }}
+        </h5>
+        <span class="d-block f-s-12 m-l-auto lh-sm text-body f-w-400">
+          {{ notification.status }}
+        </span>
+      </div>
+
+      @if (notification.type === 'TRANSFER') {
+      <span class="d-block text-truncate f-s-12 w-75 lh-sm text-body f-w-400">
+        {{ notification.transferredFiles }}/{{ notification.totalFiles }}
+      </span>
+      } @if (notification.type === 'COMPRESSION') {
+      <div class="d-flex align-items-center justify-content-between">
+        <span class="f-s-12 text-body f-w-400">
+          {{ notification.progress }}%
+        </span>
+        <span class="f-s-12 text-body f-w-400">
+          ({{ notification.transferredFiles }}/{{ notification.totalFiles }})
+        </span>
+      </div>
+
+      }
+      <mat-progress-bar
+        mode="determinate"
+        [value]="notification.progress || 0"
+        color="accent"
+        class="m-t-4 rounded-pill"
+      ></mat-progress-bar>
+    </div>
+  </div>
+</button>
+}
+
+<div class="p-y-12 p-x-32">
+  <button mat-flat-button color="primary" class="w-100 rounded-pill">
+    <div class="d-flex align-items-center gap-8">
+      Voir Tous Les Background Task
+      <i-tabler class="icon-16 d-flex" name="chevron-right"></i-tabler>
+    </div>
+  </button>
+</div>

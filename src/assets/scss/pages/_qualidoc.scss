@@ -1,0 +1,612 @@
+// ============================================
+// QUALIDOC GLOBAL THEME OVERRIDES
+// Modern, clean, responsive, user-friendly
+// ============================================
+
+$q-teal: #2DD4BF;
+$q-teal-dark: #14b8a6;
+$q-navy: #0F172A;
+$q-dark: #1e293b;
+$q-card: #ffffff;
+$q-bg: #f1f5f9;
+$q-text: #334155;
+$q-muted: #94a3b8;
+$q-border: #e2e8f0;
+$q-success: #22c55e;
+$q-warning: #f59e0b;
+$q-error: #ef4444;
+$q-radius: 14px;
+$q-radius-sm: 10px;
+
+// ==================== GLOBAL ====================
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  background: $q-bg !important;
+  color: $q-text;
+}
+
+// ==================== TOOLBAR / HEADER ====================
+.topbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid $q-border;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  height: 64px !important;
+  padding: 0 20px !important;
+
+  // Force all icon buttons in toolbar to be visible
+  .mat-mdc-icon-button {
+    color: $q-text !important;
+
+    svg {
+      stroke: $q-text !important;
+    }
+
+    &:hover {
+      color: $q-teal !important;
+
+      svg {
+        stroke: $q-teal !important;
+      }
+    }
+  }
+}
+
+// ==================== SIDEBAR ====================
+.sidebarNav {
+  background: $q-navy !important;
+  border-right: none !important;
+
+  .sidebar-list {
+    padding: 8px !important;
+  }
+
+  .mat-mdc-subheader {
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 20px 16px 6px !important;
+  }
+
+  .menu-list-item {
+    border-radius: $q-radius-sm !important;
+    margin: 2px 0 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    transition: all 0.2s ease !important;
+    height: 44px !important;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+    }
+
+    .routeIcon {
+      color: rgba(255, 255, 255, 0.5) !important;
+      font-size: 20px;
+    }
+
+    .hide-menu {
+      font-size: 0.85rem !important;
+      font-weight: 500;
+    }
+  }
+
+  .activeMenu {
+    background: rgba($q-teal, 0.15) !important;
+    color: $q-teal !important;
+
+    .routeIcon {
+      color: $q-teal !important;
+    }
+
+    .hide-menu {
+      color: $q-teal !important;
+      font-weight: 600 !important;
+    }
+  }
+}
+
+// ==================== CARDS ====================
+.mat-mdc-card,
+.cardWithShadow {
+  border-radius: $q-radius !important;
+  border: 1px solid $q-border !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  overflow: hidden;
+}
+
+.mat-mdc-card-content {
+  padding: 20px !important;
+}
+
+// ==================== TABLES ====================
+.mat-mdc-table {
+  border-radius: $q-radius-sm;
+  overflow: hidden;
+
+  .mat-mdc-header-row {
+    background: $q-bg !important;
+    height: 48px !important;
+  }
+
+  .mat-mdc-header-cell {
+    color: $q-muted !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid $q-border !important;
+  }
+
+  .mat-mdc-row {
+    height: 52px !important;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: rgba($q-teal, 0.03) !important;
+    }
+  }
+
+  .mat-mdc-cell {
+    font-size: 0.875rem;
+    color: $q-text;
+    border-bottom: 1px solid rgba($q-border, 0.6) !important;
+  }
+}
+
+// ==================== FORM FIELDS ====================
+.mat-mdc-form-field {
+  .mdc-text-field--outlined {
+    border-radius: $q-radius-sm !important;
+  }
+
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__trailing,
+  .mdc-notched-outline__notch {
+    border-color: $q-border !important;
+  }
+
+  &.mat-focused {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__trailing,
+    .mdc-notched-outline__notch {
+      border-color: $q-teal !important;
+    }
+  }
+}
+
+// ==================== BUTTONS ====================
+.mat-mdc-raised-button,
+.mat-mdc-flat-button,
+.mdc-button--raised {
+  border-radius: $q-radius-sm !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  text-transform: none !important;
+}
+
+.mat-primary {
+  --mdc-filled-button-container-color: #{$q-teal} !important;
+  --mdc-filled-button-label-text-color: #ffffff !important;
+}
+
+// ==================== TABS ====================
+.mat-mdc-tab-group {
+  .mat-mdc-tab {
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.02em;
+    min-width: 100px;
+  }
+
+  .mdc-tab-indicator__content--underline {
+    border-color: $q-teal !important;
+    border-width: 3px !important;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .mdc-tab--active .mdc-tab__text-label {
+    color: $q-teal !important;
+  }
+}
+
+// ==================== PAGINATOR ====================
+.mat-mdc-paginator {
+  background: transparent !important;
+  border-top: 1px solid $q-border;
+  font-size: 0.8rem;
+  color: $q-muted;
+}
+
+// ==================== STATUS BADGES ====================
+.bg-light-success {
+  background: rgba($q-success, 0.1) !important;
+}
+.text-success {
+  color: $q-success !important;
+}
+.bg-light-warning {
+  background: rgba($q-warning, 0.1) !important;
+}
+.text-warning {
+  color: $q-warning !important;
+}
+.bg-light-error {
+  background: rgba($q-error, 0.1) !important;
+}
+.text-error {
+  color: $q-error !important;
+}
+.bg-light-secondary {
+  background: rgba($q-muted, 0.1) !important;
+}
+
+// ==================== BREADCRUMB ====================
+.breadcrumb {
+  font-size: 0.8rem;
+  color: $q-muted;
+
+  a {
+    color: $q-teal;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ==================== CHIPS ====================
+.mat-mdc-chip {
+  border-radius: 8px !important;
+  font-size: 0.8rem !important;
+  font-weight: 500;
+}
+
+// ==================== DIALOGS ====================
+.mat-mdc-dialog-container {
+  border-radius: $q-radius !important;
+}
+
+// ==================== SCROLLBAR ====================
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba($q-muted, 0.3);
+  border-radius: 3px;
+
+  &:hover {
+    background: rgba($q-muted, 0.5);
+  }
+}
+
+// ==================== ACTION LINKS ====================
+.action-link {
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    color: $q-muted;
+
+    &:hover {
+      background: rgba($q-teal, 0.1);
+      color: $q-teal;
+    }
+  }
+}
+
+// ==================== PAGE CONTENT DESIGN ====================
+
+// Import/Export form
+import-export-form {
+  .row {
+    background: linear-gradient(135deg, rgba($q-teal, 0.02) 0%, rgba($q-bg, 0.5) 100%);
+    border: 1px solid rgba($q-teal, 0.08);
+    border-radius: $q-radius;
+    padding: 16px 12px !important;
+    margin: 0 0 16px !important;
+  }
+
+  button[mat-stroked-button] {
+    border-color: $q-teal !important;
+    color: $q-teal !important;
+    border-radius: $q-radius-sm !important;
+    font-weight: 600;
+
+    &:hover {
+      background: rgba($q-teal, 0.08) !important;
+    }
+  }
+
+  button[mat-flat-button] {
+    background: $q-teal !important;
+    color: white !important;
+    border-radius: $q-radius-sm !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    height: 48px;
+  }
+}
+
+// Status badges — pill style
+.bg-light-success, .bg-light-warning, .bg-light-error, .bg-light-secondary {
+  border-radius: 20px !important;
+  padding: 5px 12px !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em;
+  display: inline-block;
+}
+
+// GED page — title area
+.page-title {
+  font-weight: 700 !important;
+  color: $q-text;
+  font-size: 1.1rem !important;
+}
+
+// Card titles / section headers
+.mat-mdc-card {
+  margin-bottom: 16px;
+
+  &:first-child {
+    .mat-mdc-card-content {
+      padding-bottom: 12px !important;
+    }
+  }
+}
+
+// Empty state
+.mat-mdc-table {
+  .mat-mdc-no-data-row {
+    td {
+      text-align: center;
+      padding: 3rem !important;
+      color: $q-muted;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// OK/KO columns — color coded
+td.mat-mdc-cell {
+  &:nth-child(3) { // OK column
+    color: $q-success;
+    font-weight: 600;
+  }
+  &:nth-child(4) { // KO column
+    color: $q-error;
+    font-weight: 600;
+  }
+}
+
+// Main content area
+.pageWrapper {
+  max-width: 1400px;
+  padding: 20px 24px !important;
+}
+
+// Content wrapper spacing
+.contentWrapper {
+  background: $q-bg !important;
+  min-height: 100vh;
+}
+
+// Breadcrumb area
+.p-b-30 {
+  padding-bottom: 16px !important;
+
+  .page-title {
+    font-size: 1.15rem !important;
+    font-weight: 700;
+    color: $q-navy;
+  }
+}
+
+// Lexique chips
+.mat-mdc-chip-grid {
+  .mat-mdc-chip {
+    background: rgba($q-teal, 0.08) !important;
+    color: $q-teal !important;
+    border: 1px solid rgba($q-teal, 0.2) !important;
+    font-weight: 500;
+    font-size: 0.78rem;
+
+    .mat-mdc-chip-remove {
+      color: $q-teal !important;
+      opacity: 0.6;
+    }
+  }
+}
+
+// Settings tabs
+.mat-mdc-tab-body-content {
+  padding-top: 16px;
+}
+
+// Settings form cards
+mat-card.cardWithShadow {
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: rgba($q-teal, 0.15) !important;
+  }
+}
+
+// ==================== NOTIFICATIONS ====================
+.dd-notifications {
+  border-radius: $q-radius !important;
+  border: 1px solid $q-border;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+// ==================== MOBILE SIDEBAR OVERLAY ====================
+.mat-drawer-backdrop.mat-drawer-shown {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(2px);
+}
+
+// Sidebar on mobile overlay
+.mat-sidenav.sidebarNav {
+  z-index: 100;
+}
+
+// ==================== RESPONSIVE ====================
+@media (max-width: 1023px) {
+  .topbar {
+    padding: 0 12px !important;
+
+    .branding-link {
+      .brand-name {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .page-container {
+    .pageWrapper {
+      padding: 12px !important;
+    }
+  }
+
+  // Stack form fields on mobile
+  .row {
+    > .col-lg-9,
+    > .col-lg-3 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .mat-mdc-card-content {
+    padding: 14px !important;
+  }
+
+  .mat-mdc-table {
+    .mat-mdc-header-cell,
+    .mat-mdc-cell {
+      padding: 8px 10px !important;
+      font-size: 0.78rem !important;
+    }
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    table {
+      min-width: 600px;
+    }
+  }
+
+  // Make tabs scrollable on mobile
+  .mat-mdc-tab-header {
+    .mat-mdc-tab-label-container {
+      overflow-x: auto !important;
+    }
+  }
+
+  // Breadcrumb smaller
+  .p-b-30 {
+    padding-bottom: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    height: 56px !important;
+  }
+
+  .mat-mdc-card-content {
+    padding: 10px !important;
+  }
+
+  .mat-mdc-card {
+    margin-bottom: 12px !important;
+  }
+
+  .section-title,
+  .page-title {
+    font-size: 1rem !important;
+  }
+}
+
+// ==================== DARK THEME ====================
+.dark-theme {
+  body,
+  & {
+    background: #0f172a !important;
+    color: #e2e8f0;
+  }
+
+  .topbar {
+    background: #1e293b !important;
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+
+    .mat-mdc-icon-button {
+      color: #94a3b8 !important;
+
+      svg {
+        stroke: #94a3b8 !important;
+      }
+
+      &:hover {
+        color: $q-teal !important;
+
+        svg {
+          stroke: $q-teal !important;
+        }
+      }
+    }
+  }
+
+  .mat-mdc-card,
+  .cardWithShadow {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .mat-mdc-table {
+    .mat-mdc-header-row {
+      background: rgba(255, 255, 255, 0.03) !important;
+    }
+
+    .mat-mdc-header-cell {
+      color: rgba(255, 255, 255, 0.5) !important;
+      border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .mat-mdc-cell {
+      color: rgba(255, 255, 255, 0.8);
+      border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .mat-mdc-row:hover {
+      background: rgba($q-teal, 0.05) !important;
+    }
+  }
+
+  .mat-mdc-paginator {
+    border-top-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .breadcrumb {
+    color: rgba(255, 255, 255, 0.4);
+  }
+}

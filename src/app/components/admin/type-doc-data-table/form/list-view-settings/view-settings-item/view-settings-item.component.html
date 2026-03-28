@@ -1,0 +1,36 @@
+   <div class="col-2 align-content-center">#{{ column.order }}</div>
+  <div class="col-4">
+    <mat-label class="f-s-12 f-w-600 m-b-8 d-block">Nom</mat-label>
+    <mat-form-field appearance="outline" class="w-100">
+      <input
+        type="text"
+        matInput
+        required
+        [value]="column.name"
+        (input)="OnValueChanged('name',$any($event.target).value)"
+
+      />
+    </mat-form-field>
+  </div>
+  <div class="col-4">
+    <mat-label class="f-s-12 f-w-600 m-b-8 d-block">Alias</mat-label>
+    <mat-form-field appearance="outline" class="w-100">
+      <input
+        type="text"
+        matInput
+        required
+        [value]="column.displayedName"
+        (input)="OnValueChanged('displayedName',$any($event.target).value)"
+      />
+    </mat-form-field>
+  </div>
+  <div class="col-2 align-content-center">
+    <button
+      mat-mini-fab
+      class="bg-warning text-white"
+      (click)="OnValueChanged('visibility',!column.visibility)"
+    >
+      <i-tabler [name]="column.visibility ? 'eye' : 'eye-closed'"></i-tabler>
+    </button>
+  </div>
+ 

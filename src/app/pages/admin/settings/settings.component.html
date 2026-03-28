@@ -1,0 +1,48 @@
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="FTP">
+    <mat-card class="cardWithShadow">
+      <mat-card-content>
+        <app-ftp-settings-data-table
+          [flow]="flow()"
+          [settings]="ftp_settings()"
+        ></app-ftp-settings-data-table>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+  <ng-container *ngIf="flow() === 'import'">
+    <mat-tab label="Email">
+      <mat-card class="cardWithShadow">
+        <mat-card-content>
+          <app-email-settings-data-table
+            [flow]="flow()"
+            [settings]="email_settings()"
+          ></app-email-settings-data-table>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </ng-container>
+
+  <ng-container *ngIf="flow() === 'import'">
+    <mat-tab label="Server">
+      <mat-card class="cardWithShadow">
+        <mat-card-content>
+          <app-server-settings-data-table
+            [flow]="flow()"
+            [serverSettings]="server_settings()"
+          ></app-server-settings-data-table>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </ng-container>
+
+  <ng-container *ngIf="flow() === 'export'">
+    <mat-tab label="Local">
+      <mat-card class="cardWithShadow">
+        <mat-card-content>
+          <app-local-settings [localSettings]="local_settings()"></app-local-settings>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </ng-container>
+</mat-tab-group>

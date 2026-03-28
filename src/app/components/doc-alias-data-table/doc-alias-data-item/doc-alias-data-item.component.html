@@ -1,0 +1,25 @@
+<mat-form-field appearance="outline" class="w-100">
+  <mat-chip-grid #chipGrid aria-label="Ajouter lexique">
+    @for(alias of aliases; track alias) {
+    <mat-chip-row
+      (removed)="remove(alias)"
+      [editable]="true"
+      (edited)="edit(alias, $event)"
+      [aria-description]="'modifier' + alias"
+      class="f-s-14"
+    >
+      {{ alias }}
+      <button matChipRemove [attr.aria-label]="'supprimer ' + alias">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip-row>
+    }
+    <input
+      placeholder="nouveau lexique..."
+      [matChipInputFor]="chipGrid"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)"
+    />
+  </mat-chip-grid>
+</mat-form-field>

@@ -1,0 +1,35 @@
+<div class="p-x-24">
+  <div class="row p-24">
+    <div class="col-12">
+      <mat-label class="f-s-12 f-w-200 m-b-8 d-block">Nom</mat-label>
+      <mat-form-field appearance="outline" class="w-100">
+        <input
+          type="text"
+          matInput
+          required
+          [value]="_type.name"
+          (input)="handleItemAction('UPDATE_TYPE_NAME', $any($event.target).value)"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <ng-scrollbar class="position-relative mini-scroll">
+    <div
+      class="columns-list"
+      cdkDropList
+      (cdkDropListDropped)="handleItemAction('UPDATE_COLUMN_ORDER', $event)"
+    >
+      @for(column of columns; track column.order) {
+      <div cdkDrag>
+        <app-view-settings-item
+          class="row column-box b-1 p-8"
+          [column]="column"
+          (OnChange)="handleItemAction('UPDATE_COLUMN', $event)"
+        ></app-view-settings-item>
+      </div>
+
+      }
+    </div>
+  </ng-scrollbar>
+</div>

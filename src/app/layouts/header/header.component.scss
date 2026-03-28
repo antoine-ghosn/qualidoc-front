@@ -1,0 +1,110 @@
+.branding-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.03em;
+}
+
+::ng-deep .menu-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  .mat-mdc-button-touch-target { display: block; }
+
+  svg {
+    width: 22px !important;
+    height: 22px !important;
+    stroke: #334155 !important;
+  }
+
+  &:hover svg {
+    stroke: #2DD4BF !important;
+  }
+}
+
+::ng-deep .header-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 20px !important;
+    height: 20px !important;
+    stroke: #64748b !important;
+  }
+}
+
+::ng-deep .lang-btn {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em;
+  color: #64748b !important;
+  min-width: 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 4px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2DD4BF, #0d9488);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+}
+
+.user-avatar-lg {
+  width: 44px;
+  height: 44px;
+  font-size: 0.9rem;
+  border-radius: 12px;
+}
+
+:host-context(.dark-theme) {
+  .brand-name {
+    color: #e2e8f0;
+  }
+
+  .menu-btn,
+  .header-btn {
+    color: #94a3b8;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-name {
+    font-size: 1rem;
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.65rem;
+    border-radius: 8px;
+  }
+}

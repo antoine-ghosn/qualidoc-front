@@ -1,0 +1,30 @@
+<mat-dialog-content>
+  <pdf-viewer
+    src="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf"
+    [render-text]="true"
+    [original-size]="false"
+  ></pdf-viewer>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div mat-dialog-actions class="p-x-24 p-b-24">
+    <button
+      mat-flat-button
+      class="m-l-8 bg-primary text-white w-50"
+      color="primary"
+      (click)="closeDialog()"
+    >
+      Telecharger
+    </button>
+    <div>
+      <button
+        mat-flat-button
+        class="bg-light-error text-error m-l-8 w-20"
+        color="primary"
+        (click)="closeDialog()"
+      >
+        Annuler
+      </button>
+    </div>
+  </div>
+</mat-dialog-actions>
