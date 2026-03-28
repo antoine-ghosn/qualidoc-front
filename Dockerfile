@@ -13,7 +13,8 @@ RUN npm ci
 
 COPY . .
 
-RUN npx ng build --configuration=production
+ENV NODE_OPTIONS=--max-old-space-size=4096
+RUN npm run build -- --configuration=production
 
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
