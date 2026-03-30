@@ -73,21 +73,21 @@
           <div class="slide gx-slide">
             <span class="slide-badge red">{{ t('s2Badge') }}</span>
             <h2 class="slide-title" [innerHTML]="t('s2Title').replace('\n', '<br>')"></h2>
-            <div class="gx-cards-row">
-              <div class="gx-problem-card" style="animation-delay:0.1s">
-                <div class="gx-card-icon gx-red">&times;</div>
-                <h4>{{ t('s2Point1') }}</h4>
+            <div class="gx-problem-list">
+              <div class="gx-problem-item" style="animation-delay:0.1s">
+                <span class="gx-problem-marker">&times;</span>
+                <span>{{ t('s2Point1') }}</span>
               </div>
-              <div class="gx-problem-card" style="animation-delay:0.25s">
-                <div class="gx-card-icon gx-red">?</div>
-                <h4>{{ t('s2Point2') }}</h4>
+              <div class="gx-problem-item" style="animation-delay:0.25s">
+                <span class="gx-problem-marker">?</span>
+                <span>{{ t('s2Point2') }}</span>
               </div>
-              <div class="gx-problem-card" style="animation-delay:0.4s">
-                <div class="gx-card-icon gx-red">!</div>
-                <h4>{{ t('s2Point3') }}</h4>
+              <div class="gx-problem-item" style="animation-delay:0.4s">
+                <span class="gx-problem-marker">!</span>
+                <span>{{ t('s2Point3') }}</span>
               </div>
             </div>
-            <div class="result-box teal-box" style="margin-top:1rem">{{ t('s2Result') }}</div>
+            <div class="result-box teal-box">{{ t('s2Result') }}</div>
           </div>
         }
 
@@ -147,12 +147,15 @@
           <div class="slide gx-slide">
             <span class="slide-badge gold">{{ t('s5Badge') }}</span>
             <h2 class="slide-title">{{ t('s5Title') }}</h2>
-            <div class="gx-steps" style="flex-direction:column">
+            <div class="gx-pipeline">
               @for (step of ['s5Frontend','s5Backend','s5Search','s5Database','s5Auth','s5Realtime']; track step; let i = $index; let last = $last) {
-                <div class="gx-step" [class.gx-step-final]="last" [style.animation-delay]="(i * 0.1) + 's'">
-                  <div class="gx-step-num" [class.gx-num-teal]="last" [class.gx-num-gold]="i === 1 || i === 2">{{ i + 1 }}</div>
-                  <div class="gx-step-content"><h4>{{ t(step) }}</h4></div>
+                <div class="gx-pipe-item" [class.gx-pipe-final]="last" [style.animation-delay]="(i * 0.08) + 's'">
+                  <span class="gx-pipe-num" [class.gx-num-teal]="last" [class.gx-num-gold]="i === 1 || i === 2">{{ i + 1 }}</span>
+                  <span class="gx-pipe-label">{{ t(step) }}</span>
                 </div>
+                @if (!last) {
+                  <div class="gx-pipe-connector"></div>
+                }
               }
             </div>
           </div>
@@ -163,16 +166,14 @@
           <div class="slide gx-slide">
             <span class="slide-badge gold">{{ t('s6Badge') }}</span>
             <h2 class="slide-title">{{ t('s6Title') }}</h2>
-            <div class="gx-demo-list">
+            <div class="gx-examples">
               @for (num of [1,2,3]; track num) {
-                <div class="gx-demo-item" [style.animation-delay]="(num * 0.15) + 's'">
-                  <div class="gx-demo-before">
-                    <span class="gx-demo-tag">BEFORE</span>
+                <div class="gx-ex-card" [style.animation-delay]="(num * 0.12) + 's'">
+                  <div class="gx-ex-input">
                     <code>{{ t('s6Ex' + num + 'In') }}</code>
                   </div>
-                  <div class="gx-demo-arrow">&#10132;</div>
-                  <div class="gx-demo-after">
-                    <span class="gx-demo-tag gx-tag-green">AFTER</span>
+                  <div class="gx-ex-arrow">&#8595;</div>
+                  <div class="gx-ex-output">
                     <span>{{ t('s6Ex' + num + 'Out') }}</span>
                   </div>
                 </div>
