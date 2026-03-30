@@ -1,7 +1,7 @@
 export const landingTranslations: Record<string, Record<string, string>> = {
   fr: {
     // Hero
-    badge: 'GITEX AFRICA 2026',
+    badge: 'INNOLOGYS',
     title: 'Vos documents arrivent.\nL\'IA les qualifie.',
     subtitle: 'Connecteurs temps réel + Qualification IA personnalisable.\nImmobilier, juridique, comptabilité, santé — chaque métier.',
     btnPitch: 'Pitch',
@@ -61,7 +61,7 @@ export const landingTranslations: Record<string, Record<string, string>> = {
     // --- PITCH SLIDES ---
 
     // Slide 1 - Title
-    s1Badge: 'GITEX AFRICA 2026',
+    s1Badge: 'INNOLOGYS',
     s1Title: 'Qualidoc',
     s1Subtitle: 'Qualification documentaire par IA\nPour chaque métier. Personnalisable.',
     s1Footer: 'innologys.fr',
@@ -167,18 +167,18 @@ export const landingTranslations: Record<string, Record<string, string>> = {
     s8OpenTextCost: '',
 
     // Slide 9 - Contact
-    s10Badge: 'GITEX AFRICA 2026',
+    s10Badge: 'INNOLOGYS',
     s10Title: 'Qualidoc',
     s10Subtitle: 'Qualification IA personnalisable\npour chaque métier.',
     s10Web: 'innologys.fr',
     s10Email: 'contact@innologys.fr',
     s10Closing: 'Merci',
-    s10ClosingSub: 'INNOLOGYS — innologys.fr',
+    s10ClosingSub: 'Antoine Ghosn — CEO & Fondateur — innologys.fr',
   },
 
   en: {
     // Hero
-    badge: 'GITEX AFRICA 2026',
+    badge: 'INNOLOGYS',
     title: 'Your documents arrive.\nAI qualifies them.',
     subtitle: 'Real-time connectors + Customizable AI qualification.\nReal estate, legal, accounting, healthcare — every industry.',
     btnPitch: 'Pitch',
@@ -238,7 +238,7 @@ export const landingTranslations: Record<string, Record<string, string>> = {
     // --- PITCH SLIDES ---
 
     // Slide 1 - Title
-    s1Badge: 'GITEX AFRICA 2026',
+    s1Badge: 'INNOLOGYS',
     s1Title: 'Qualidoc',
     s1Subtitle: 'AI-powered document qualification\nFor every industry. Fully customizable.',
     s1Footer: 'innologys.fr',
@@ -344,12 +344,12 @@ export const landingTranslations: Record<string, Record<string, string>> = {
     s8OpenTextCost: '',
 
     // Slide 9 - Contact
-    s10Badge: 'GITEX AFRICA 2026',
+    s10Badge: 'INNOLOGYS',
     s10Title: 'Qualidoc',
     s10Subtitle: 'Customizable AI qualification\nfor every industry.',
     s10Web: 'innologys.fr',
     s10Email: 'contact@innologys.fr',
     s10Closing: 'Thank you',
-    s10ClosingSub: 'Booth [X] — Hall [X] — GITEX Dubai',
+    s10ClosingSub: 'Antoine Ghosn — CEO & Founder — innologys.fr',
   },
 };

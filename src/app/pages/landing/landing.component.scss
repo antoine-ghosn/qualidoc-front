@@ -1,14 +1,14 @@
 // ==================== VARIABLES ====================
-$bg-dark: #0a0a0a;
-$bg-navy: #0F172A;
-$bg-card: rgba(255, 255, 255, 0.04);
-$accent-teal: #2DD4BF;
-$accent-gold: #D4AF37;
-$accent-red: #FF6B6B;
-$text-white: #ffffff;
-$text-muted: rgba(255, 255, 255, 0.6);
-$text-dim: rgba(255, 255, 255, 0.4);
-$border-subtle: rgba(255, 255, 255, 0.1);
+$bg-dark: #0B0E14;
+$bg-navy: #0F1319;
+$bg-card: rgba(255, 255, 255, 0.03);
+$accent-teal: #D4A853;
+$accent-gold: #E8C97A;
+$accent-red: #F87171;
+$text-white: #E8ECF4;
+$text-muted: rgba(255, 255, 255, 0.55);
+$text-dim: rgba(255, 255, 255, 0.35);
+$border-subtle: rgba(255, 255, 255, 0.08);
 $font-heading: 'Cormorant Garamond', serif;
 $font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
 
@@ -88,7 +88,7 @@ $font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, $bg-dark 0%, #0d1b2a 25%, $bg-navy 50%, #1a1a2e 75%, $bg-dark 100%);
+  background: linear-gradient(135deg, $bg-dark 0%, #0d1117 25%, $bg-navy 50%, #12151d 75%, $bg-dark 100%);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   z-index: 0;
@@ -98,9 +98,9 @@ $font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 20% 50%, rgba($accent-teal, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba($accent-gold, 0.06) 0%, transparent 40%),
-      radial-gradient(circle at 60% 80%, rgba($accent-teal, 0.05) 0%, transparent 45%);
+      radial-gradient(circle at 20% 50%, rgba($accent-teal, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba($accent-gold, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 60% 80%, rgba($accent-teal, 0.04) 0%, transparent 45%);
   }
 }
 
@@ -425,8 +425,12 @@ $font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
   animation: fadeIn 0.5s ease both;
 
   .gx-card-icon {
-    font-size: 1.6rem;
+    font-family: $font-heading;
+    font-size: 2rem;
+    font-weight: 700;
     margin-bottom: 0.5rem;
+    color: $accent-red;
+    line-height: 1;
   }
 
   h4 {
@@ -649,7 +653,7 @@ $font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
   width: 95vw;
   max-width: 920px;
   max-height: 92vh;
-  background: linear-gradient(135deg, #0a0a1a 0%, $bg-navy 50%, #0a0a1a 100%);
+  background: linear-gradient(135deg, $bg-dark 0%, #111620 50%, $bg-dark 100%);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   overflow: hidden;
@@ -1114,7 +1118,7 @@ $font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
 
 .contact-title {
   font-size: clamp(2rem, 5vw, 3.5rem) !important;
-  color: $accent-teal;
+  color: $accent-gold;
 }
 
 // ==================== SLIDE 6: SMART EXAMPLES ====================
@@ -1454,7 +1458,7 @@ $font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 300;
   margin: 0 0 0.5rem;
-  color: $accent-teal;
+  color: $accent-gold;
 }
 
 .contact-links {
