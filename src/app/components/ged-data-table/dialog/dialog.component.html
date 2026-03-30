@@ -6,25 +6,19 @@
   ></pdf-viewer>
 </mat-dialog-content>
 
-<mat-dialog-actions>
-  <div mat-dialog-actions class="p-x-24 p-b-24">
-    <button
-      mat-flat-button
-      class="m-l-8 bg-primary text-white w-50"
-      color="primary"
-      (click)="closeDialog()"
-    >
-      Telecharger
-    </button>
-    <div>
-      <button
-        mat-flat-button
-        class="bg-light-error text-error m-l-8 w-20"
-        color="primary"
-        (click)="closeDialog()"
-      >
-        Annuler
-      </button>
-    </div>
-  </div>
+<mat-dialog-actions class="d-flex justify-content-end gap-8 p-x-24 p-b-16">
+  <button
+    mat-flat-button
+    class="bg-light-error text-error"
+    (click)="closeDialog()"
+  >
+    Annuler
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="closeDialog()"
+  >
+    Telecharger
+  </button>
 </mat-dialog-actions>

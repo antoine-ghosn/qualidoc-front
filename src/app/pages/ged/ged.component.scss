@@ -1,0 +1,28 @@
+.ged-filters {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.ged-search {
+  flex: 1;
+  min-width: 0;
+}
+
+.ged-folder {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .ged-filters {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .ged-search,
+  .ged-folder {
+    width: 100%;
+  }
+}

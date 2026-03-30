@@ -1,32 +1,28 @@
 <mat-card class="cardWithShadow">
   <mat-card-content>
-    <div class="row">
-      <div class="col-lg-9">
-        <mat-form-field appearance="outline" class="w-100 hide-hint">
-          <input
-            matInput
-            [placeholder]="lang.t('ged.search')"
-            (keyup)="search($any($event.target).value)"
-          />
-          <mat-icon matSuffix>
-            <i-tabler name="search" class="icon-20 d-flex m-t-2"></i-tabler>
-          </mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="col-lg-3">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>{{ lang.t('ged.folder') }}</mat-label>
-          <mat-select
-            value=""
-            (selectionChange)="selectCategory($any($event).value)"
-          >
-            <mat-option value=""></mat-option>
-            @for (folder of folders(); track folder.name) {
-            <mat-option [value]="folder.name">{{ folder.name }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </div>
+    <div class="ged-filters">
+      <mat-form-field appearance="outline" class="ged-search hide-hint">
+        <input
+          matInput
+          [placeholder]="lang.t('ged.search')"
+          (keyup)="search($any($event.target).value)"
+        />
+        <mat-icon matSuffix>
+          <i-tabler name="search" class="icon-20 d-flex m-t-2"></i-tabler>
+        </mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="ged-folder">
+        <mat-label>{{ lang.t('ged.folder') }}</mat-label>
+        <mat-select
+          value=""
+          (selectionChange)="selectCategory($any($event).value)"
+        >
+          <mat-option value=""></mat-option>
+          @for (folder of folders(); track folder.name) {
+          <mat-option [value]="folder.name">{{ folder.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
     </div>
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
       <mat-tab [label]="lang.t('ged.listView')">

@@ -1,7 +1,58 @@
 ::ng-deep .ged-table {
-  .mat-mdc-row:hover{
-    background: rgba(0, 0, 0, 0.025);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
+  table {
+    min-width: 600px;
   }
- 
+
+  .mat-mdc-row {
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: rgba(212, 168, 83, 0.03);
+    }
+  }
+
+  .mat-mdc-header-cell {
+    white-space: nowrap;
+  }
+
+  .ged-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ged-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+
+    a {
+      min-width: 32px;
+      min-height: 32px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  ::ng-deep .ged-table {
+    .ged-cell {
+      max-width: 140px;
+      font-size: 0.8rem;
+    }
+
+    .mat-mdc-header-cell {
+      font-size: 0.7rem !important;
+      padding: 8px 6px !important;
+    }
+
+    .mat-mdc-cell {
+      padding: 8px 6px !important;
+    }
+  }
 }
