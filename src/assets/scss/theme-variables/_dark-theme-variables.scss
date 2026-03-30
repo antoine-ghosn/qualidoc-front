@@ -2,37 +2,37 @@
 
 html.dark-theme {
   color-scheme: dark;
-  --mat-sys-background: #141a21;
-  --mat-sys-on-background: rgba(255, 255, 255, 0.9);
-  --mat-sys-on-primary: #fff;
-  --mat-sys-surface-bright: #ffffff05;
-  --mat-sys-surface: #141a21;
-  --mat-sys-surface-container: #141a21;
-  --mat-sys-surface-container-low: #141a21;
-  --mat-sys-outline-variant: #2e3f50;
-  --mat-sys-outline: #2e3f50;
-  --mdc-outlined-text-field-hover-outline-color: #465670;
-  --mdc-checkbox-unselected-hover-state-layer-color: #19212a;
-  --mat-menu-item-hover-state-layer-color: #19212a;
-  --mat-standard-button-toggle-state-layer-color: #19212a;
-  --mat-option-focus-state-layer-color: #19212a;
-  --mat-option-hover-state-layer-color: #19212a;
-  --mdc-switch-unselected-track-color: #19212a;
-  --mat-stepper-header-focus-state-layer-color: #19212a;
-  --mat-stepper-header-hover-state-layer-color: #19212a;
-  --mat-expansion-header-hover-state-layer-color: #19212a;
+  --mat-sys-background: #0F1319;
+  --mat-sys-on-background: #E8ECF4;
+  --mat-sys-on-primary: #0B0E14;
+  --mat-sys-surface-bright: #1C222E;
+  --mat-sys-surface: #161B24;
+  --mat-sys-surface-container: #161B24;
+  --mat-sys-surface-container-low: #161B24;
+  --mat-sys-outline-variant: rgba(255, 255, 255, 0.06);
+  --mat-sys-outline: rgba(255, 255, 255, 0.06);
+  --mdc-outlined-text-field-hover-outline-color: rgba(255, 255, 255, 0.1);
+  --mdc-checkbox-unselected-hover-state-layer-color: rgba(255, 255, 255, 0.06);
+  --mat-menu-item-hover-state-layer-color: rgba(212, 168, 83, 0.06);
+  --mat-standard-button-toggle-state-layer-color: rgba(212, 168, 83, 0.06);
+  --mat-option-focus-state-layer-color: rgba(212, 168, 83, 0.06);
+  --mat-option-hover-state-layer-color: rgba(212, 168, 83, 0.06);
+  --mdc-switch-unselected-track-color: #232A38;
+  --mat-stepper-header-focus-state-layer-color: rgba(212, 168, 83, 0.06);
+  --mat-stepper-header-hover-state-layer-color: rgba(212, 168, 83, 0.06);
+  --mat-expansion-header-hover-state-layer-color: rgba(212, 168, 83, 0.06);
   @include mat.card-overrides(
     (
-      elevated-container-color: #1c252e,
-      elevated-container-elevation: rgba(0, 0, 0, 0.2) 0px 0px 2px 0px,
-      subtitle-text-color: rgba(255, 255, 255, 0.67),
+      elevated-container-color: #161B24,
+      elevated-container-elevation: rgba(0, 0, 0, 0.3) 0px 0px 2px 0px,
+      subtitle-text-color: #8B95A8,
     )
   );
   @include mat.theme-overrides(
     (
-      level1: 0px 12px 24px -4px rgba(143, 176, 210, 0.02),
-      level2: 0px 12px 24px -4px rgba(143, 176, 210, 0.02),
-      level3: 0px 12px 24px -4px rgba(143, 176, 210, 0.02),
+      level1: 0px 4px 16px rgba(0, 0, 0, 0.3),
+      level2: 0px 8px 32px rgba(0, 0, 0, 0.35),
+      level3: 0px 12px 48px rgba(0, 0, 0, 0.4),
     )
   );
 }

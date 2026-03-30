@@ -1,51 +1,80 @@
 // ============================================
-// QUALIDOC GLOBAL THEME OVERRIDES
-// Modern, clean, responsive, user-friendly
+// QUALIDOC — LUXURY PREMIUM THEME
+// Dark elegance with gold accents
 // ============================================
 
-$q-teal: #2DD4BF;
-$q-teal-dark: #14b8a6;
-$q-navy: #0F172A;
-$q-dark: #1e293b;
-$q-card: #ffffff;
-$q-bg: #f1f5f9;
-$q-text: #334155;
-$q-muted: #94a3b8;
-$q-border: #e2e8f0;
-$q-success: #22c55e;
-$q-warning: #f59e0b;
-$q-error: #ef4444;
-$q-radius: 14px;
+// ── Palette ──
+$q-gold: #D4A853;
+$q-gold-light: #E8C97A;
+$q-gold-dim: rgba(212, 168, 83, 0.12);
+$q-gold-glow: rgba(212, 168, 83, 0.25);
+
+$q-bg-deep: #0B0E14;
+$q-bg: #0F1319;
+$q-surface: #161B24;
+$q-surface-2: #1C222E;
+$q-surface-3: #232A38;
+
+$q-text: #E8ECF4;
+$q-text-secondary: #8B95A8;
+$q-text-muted: #565F72;
+$q-border: rgba(255, 255, 255, 0.06);
+$q-border-hover: rgba(255, 255, 255, 0.1);
+
+$q-success: #34D399;
+$q-warning: #FBBF24;
+$q-error: #F87171;
+
+$q-radius: 16px;
 $q-radius-sm: 10px;
+$q-radius-xs: 6px;
+
+$q-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+$q-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+$q-shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.5);
+$q-shadow-gold: 0 0 30px rgba(212, 168, 83, 0.08);
+
+// ── Typography ──
+$font-display: 'Cormorant Garamond', Georgia, serif;
+$font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
 
 // ==================== GLOBAL ====================
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-family: $font-body !important;
   background: $q-bg !important;
   color: $q-text;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba($q-gold, 0.3);
+  color: #fff;
 }
 
 // ==================== TOOLBAR / HEADER ====================
 .topbar {
-  background: #ffffff !important;
-  border-bottom: 1px solid $q-border;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  background: rgba($q-surface, 0.85) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid $q-border !important;
+  box-shadow: none !important;
   height: 64px !important;
-  padding: 0 20px !important;
+  padding: 0 24px !important;
 
-  // Force all icon buttons in toolbar to be visible
   .mat-mdc-icon-button {
-    color: $q-text !important;
+    color: $q-text-secondary !important;
 
     svg {
-      stroke: $q-text !important;
+      stroke: $q-text-secondary !important;
     }
 
     &:hover {
-      color: $q-teal !important;
+      color: $q-gold !important;
 
       svg {
-        stroke: $q-teal !important;
+        stroke: $q-gold !important;
       }
     }
   }
@@ -53,55 +82,62 @@ body {
 
 // ==================== SIDEBAR ====================
 .sidebarNav {
-  background: $q-navy !important;
-  border-right: none !important;
+  background: $q-bg-deep !important;
+  border-right: 1px solid $q-border !important;
 
   .sidebar-list {
-    padding: 8px !important;
+    padding: 12px 10px !important;
   }
 
   .mat-mdc-subheader {
-    color: rgba(255, 255, 255, 0.4) !important;
-    font-size: 0.65rem !important;
-    letter-spacing: 0.12em;
+    color: $q-text-muted !important;
+    font-size: 0.6rem !important;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 20px 16px 6px !important;
+    padding: 28px 16px 8px !important;
   }
 
   .menu-list-item {
     border-radius: $q-radius-sm !important;
     margin: 2px 0 !important;
-    color: rgba(255, 255, 255, 0.7) !important;
-    transition: all 0.2s ease !important;
+    color: $q-text-secondary !important;
+    transition: all 0.25s cubic-bezier(.4, 0, .2, 1) !important;
     height: 44px !important;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.08) !important;
-      color: #ffffff !important;
+      background: rgba(255, 255, 255, 0.04) !important;
+      color: $q-text !important;
+
+      .routeIcon {
+        color: $q-gold-light !important;
+      }
     }
 
     .routeIcon {
-      color: rgba(255, 255, 255, 0.5) !important;
+      color: $q-text-muted !important;
       font-size: 20px;
+      transition: color 0.25s ease;
     }
 
     .hide-menu {
-      font-size: 0.85rem !important;
+      font-size: 0.82rem !important;
       font-weight: 500;
+      letter-spacing: 0.01em;
     }
   }
 
   .activeMenu {
-    background: rgba($q-teal, 0.15) !important;
-    color: $q-teal !important;
+    background: $q-gold-dim !important;
+    color: $q-gold !important;
+    box-shadow: inset 3px 0 0 $q-gold;
 
     .routeIcon {
-      color: $q-teal !important;
+      color: $q-gold !important;
     }
 
     .hide-menu {
-      color: $q-teal !important;
+      color: $q-gold !important;
       font-weight: 600 !important;
     }
   }
@@ -110,48 +146,78 @@ body {
 // ==================== CARDS ====================
 .mat-mdc-card,
 .cardWithShadow {
+  background: $q-surface !important;
   border-radius: $q-radius !important;
   border: 1px solid $q-border !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: $q-shadow-sm !important;
   overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    border-color: $q-border-hover !important;
+  }
 }
 
 .mat-mdc-card-content {
-  padding: 20px !important;
+  padding: 24px !important;
 }
 
 // ==================== TABLES ====================
 .mat-mdc-table {
+  background: transparent !important;
   border-radius: $q-radius-sm;
   overflow: hidden;
 
   .mat-mdc-header-row {
-    background: $q-bg !important;
+    background: rgba(255, 255, 255, 0.02) !important;
     height: 48px !important;
   }
 
   .mat-mdc-header-cell {
-    color: $q-muted !important;
-    font-size: 0.75rem !important;
+    color: $q-text-muted !important;
+    font-size: 0.7rem !important;
     font-weight: 700 !important;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     border-bottom: 1px solid $q-border !important;
+    background: transparent !important;
   }
 
   .mat-mdc-row {
-    height: 52px !important;
-    transition: background 0.15s ease;
+    height: 56px !important;
+    transition: all 0.2s ease;
 
     &:hover {
-      background: rgba($q-teal, 0.03) !important;
+      background: rgba($q-gold, 0.03) !important;
     }
   }
 
   .mat-mdc-cell {
     font-size: 0.875rem;
     color: $q-text;
-    border-bottom: 1px solid rgba($q-border, 0.6) !important;
+    border-bottom: 1px solid $q-border !important;
+    background: transparent !important;
+  }
+
+  .mat-mdc-no-data-row {
+    td {
+      text-align: center;
+      padding: 3rem !important;
+      color: $q-text-muted;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// OK/KO columns
+td.mat-mdc-cell {
+  &:nth-child(3) {
+    color: $q-success;
+    font-weight: 600;
+  }
+  &:nth-child(4) {
+    color: $q-error;
+    font-weight: 600;
   }
 }
 
@@ -171,8 +237,17 @@ body {
     .mdc-notched-outline__leading,
     .mdc-notched-outline__trailing,
     .mdc-notched-outline__notch {
-      border-color: $q-teal !important;
+      border-color: $q-gold !important;
+      border-width: 1.5px;
     }
+  }
+
+  .mat-mdc-floating-label {
+    color: $q-text-secondary !important;
+  }
+
+  input.mat-mdc-input-element {
+    color: $q-text !important;
   }
 }
 
@@ -182,33 +257,55 @@ body {
 .mdc-button--raised {
   border-radius: $q-radius-sm !important;
   font-weight: 600 !important;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-transform: none !important;
+  transition: all 0.25s ease !important;
 }
 
 .mat-primary {
-  --mdc-filled-button-container-color: #{$q-teal} !important;
-  --mdc-filled-button-label-text-color: #ffffff !important;
+  --mdc-filled-button-container-color: #{$q-gold} !important;
+  --mdc-filled-button-label-text-color: #0B0E14 !important;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba($q-gold, 0.3) !important;
+  }
+}
+
+// Stroked buttons
+button[mat-stroked-button] {
+  border-color: rgba($q-gold, 0.3) !important;
+  color: $q-gold !important;
+
+  &:hover {
+    background: $q-gold-dim !important;
+    border-color: $q-gold !important;
+  }
 }
 
 // ==================== TABS ====================
 .mat-mdc-tab-group {
   .mat-mdc-tab {
     font-weight: 600 !important;
-    font-size: 0.85rem !important;
-    letter-spacing: 0.02em;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     min-width: 100px;
+    color: $q-text-secondary !important;
   }
 
   .mdc-tab-indicator__content--underline {
-    border-color: $q-teal !important;
-    border-width: 3px !important;
-    border-radius: 3px 3px 0 0;
+    border-color: $q-gold !important;
+    border-width: 2px !important;
+    border-radius: 2px 2px 0 0;
   }
 
   .mdc-tab--active .mdc-tab__text-label {
-    color: $q-teal !important;
+    color: $q-gold !important;
   }
+}
+
+.mat-mdc-tab-body-content {
+  padding-top: 20px;
 }
 
 // ==================== PAGINATOR ====================
@@ -216,43 +313,54 @@ body {
   background: transparent !important;
   border-top: 1px solid $q-border;
   font-size: 0.8rem;
-  color: $q-muted;
+  color: $q-text-muted;
 }
 
 // ==================== STATUS BADGES ====================
+.bg-light-success, .bg-light-warning, .bg-light-error, .bg-light-secondary {
+  border-radius: 20px !important;
+  padding: 5px 14px !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
 .bg-light-success {
-  background: rgba($q-success, 0.1) !important;
+  background: rgba($q-success, 0.12) !important;
 }
 .text-success {
   color: $q-success !important;
 }
 .bg-light-warning {
-  background: rgba($q-warning, 0.1) !important;
+  background: rgba($q-warning, 0.12) !important;
 }
 .text-warning {
   color: $q-warning !important;
 }
 .bg-light-error {
-  background: rgba($q-error, 0.1) !important;
+  background: rgba($q-error, 0.12) !important;
 }
 .text-error {
   color: $q-error !important;
 }
 .bg-light-secondary {
-  background: rgba($q-muted, 0.1) !important;
+  background: rgba($q-text-muted, 0.12) !important;
 }
 
 // ==================== BREADCRUMB ====================
 .breadcrumb {
-  font-size: 0.8rem;
-  color: $q-muted;
+  font-size: 0.78rem;
+  color: $q-text-muted;
 
   a {
-    color: $q-teal;
+    color: $q-gold;
     text-decoration: none;
+    transition: color 0.2s;
 
     &:hover {
-      text-decoration: underline;
+      color: $q-gold-light;
     }
   }
 }
@@ -260,19 +368,39 @@ body {
 // ==================== CHIPS ====================
 .mat-mdc-chip {
   border-radius: 8px !important;
-  font-size: 0.8rem !important;
+  font-size: 0.78rem !important;
   font-weight: 500;
+}
+
+.mat-mdc-chip-grid {
+  .mat-mdc-chip {
+    background: $q-gold-dim !important;
+    color: $q-gold !important;
+    border: 1px solid rgba($q-gold, 0.2) !important;
+    font-weight: 500;
+    font-size: 0.78rem;
+
+    .mat-mdc-chip-remove {
+      color: $q-gold !important;
+      opacity: 0.6;
+    }
+  }
 }
 
 // ==================== DIALOGS ====================
 .mat-mdc-dialog-container {
   border-radius: $q-radius !important;
+
+  .mdc-dialog__surface {
+    background: $q-surface !important;
+    border: 1px solid $q-border;
+  }
 }
 
 // ==================== SCROLLBAR ====================
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -280,11 +408,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba($q-muted, 0.3);
-  border-radius: 3px;
+  background: rgba($q-text-muted, 0.2);
+  border-radius: 10px;
 
   &:hover {
-    background: rgba($q-muted, 0.5);
+    background: rgba($q-gold, 0.3);
   }
 }
 
@@ -294,180 +422,155 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 8px;
-    transition: all 0.2s;
-    color: $q-muted;
+    transition: all 0.25s;
+    color: $q-text-muted;
 
     &:hover {
-      background: rgba($q-teal, 0.1);
-      color: $q-teal;
+      background: $q-gold-dim;
+      color: $q-gold;
     }
   }
 }
 
-// ==================== PAGE CONTENT DESIGN ====================
-
-// Import/Export form
+// ==================== IMPORT/EXPORT FORM ====================
 import-export-form {
   .row {
-    background: linear-gradient(135deg, rgba($q-teal, 0.02) 0%, rgba($q-bg, 0.5) 100%);
-    border: 1px solid rgba($q-teal, 0.08);
+    background: linear-gradient(135deg, rgba($q-gold, 0.03) 0%, rgba($q-surface-2, 0.5) 100%);
+    border: 1px solid rgba($q-gold, 0.06);
     border-radius: $q-radius;
     padding: 16px 12px !important;
     margin: 0 0 16px !important;
   }
 
   button[mat-stroked-button] {
-    border-color: $q-teal !important;
-    color: $q-teal !important;
+    border-color: rgba($q-gold, 0.3) !important;
+    color: $q-gold !important;
     border-radius: $q-radius-sm !important;
     font-weight: 600;
 
     &:hover {
-      background: rgba($q-teal, 0.08) !important;
+      background: $q-gold-dim !important;
     }
   }
 
   button[mat-flat-button] {
-    background: $q-teal !important;
-    color: white !important;
+    background: $q-gold !important;
+    color: $q-bg-deep !important;
     border-radius: $q-radius-sm !important;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.9rem;
     letter-spacing: 0.05em;
     height: 48px;
+
+    &:hover {
+      box-shadow: $q-shadow-gold;
+    }
   }
 }
 
-// Status badges — pill style
-.bg-light-success, .bg-light-warning, .bg-light-error, .bg-light-secondary {
-  border-radius: 20px !important;
-  padding: 5px 12px !important;
-  font-size: 0.7rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.03em;
-  display: inline-block;
-}
-
-// GED page — title area
+// ==================== PAGE ====================
 .page-title {
-  font-weight: 700 !important;
+  font-family: $font-display !important;
+  font-weight: 600 !important;
   color: $q-text;
-  font-size: 1.1rem !important;
+  font-size: 1.3rem !important;
+  letter-spacing: 0.01em;
 }
 
-// Card titles / section headers
-.mat-mdc-card {
-  margin-bottom: 16px;
-
-  &:first-child {
-    .mat-mdc-card-content {
-      padding-bottom: 12px !important;
-    }
-  }
-}
-
-// Empty state
-.mat-mdc-table {
-  .mat-mdc-no-data-row {
-    td {
-      text-align: center;
-      padding: 3rem !important;
-      color: $q-muted;
-      font-size: 0.9rem;
-    }
-  }
-}
-
-// OK/KO columns — color coded
-td.mat-mdc-cell {
-  &:nth-child(3) { // OK column
-    color: $q-success;
-    font-weight: 600;
-  }
-  &:nth-child(4) { // KO column
-    color: $q-error;
-    font-weight: 600;
-  }
-}
-
-// Main content area
 .pageWrapper {
   max-width: 1400px;
-  padding: 20px 24px !important;
+  padding: 24px 28px !important;
 }
 
-// Content wrapper spacing
 .contentWrapper {
   background: $q-bg !important;
   min-height: 100vh;
 }
 
-// Breadcrumb area
 .p-b-30 {
   padding-bottom: 16px !important;
 
   .page-title {
-    font-size: 1.15rem !important;
-    font-weight: 700;
-    color: $q-navy;
+    font-family: $font-display !important;
+    font-size: 1.35rem !important;
+    font-weight: 600;
+    color: $q-text;
   }
 }
 
-// Lexique chips
-.mat-mdc-chip-grid {
-  .mat-mdc-chip {
-    background: rgba($q-teal, 0.08) !important;
-    color: $q-teal !important;
-    border: 1px solid rgba($q-teal, 0.2) !important;
-    font-weight: 500;
-    font-size: 0.78rem;
-
-    .mat-mdc-chip-remove {
-      color: $q-teal !important;
-      opacity: 0.6;
-    }
-  }
-}
-
-// Settings tabs
-.mat-mdc-tab-body-content {
-  padding-top: 16px;
-}
-
-// Settings form cards
+// ==================== SETTINGS CARDS ====================
 mat-card.cardWithShadow {
-  transition: border-color 0.2s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 
   &:hover {
-    border-color: rgba($q-teal, 0.15) !important;
+    border-color: rgba($q-gold, 0.12) !important;
+    box-shadow: $q-shadow-gold !important;
   }
+}
+
+.mat-mdc-card {
+  margin-bottom: 16px;
 }
 
 // ==================== NOTIFICATIONS ====================
 .dd-notifications {
   border-radius: $q-radius !important;
   border: 1px solid $q-border;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: $q-shadow-lg !important;
+  background: $q-surface !important;
 }
 
-// ==================== MOBILE SIDEBAR OVERLAY ====================
+// ==================== MOBILE OVERLAY ====================
 .mat-drawer-backdrop.mat-drawer-shown {
-  background: rgba(0, 0, 0, 0.5) !important;
-  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(4px);
 }
 
-// Sidebar on mobile overlay
 .mat-sidenav.sidebarNav {
   z-index: 100;
+}
+
+// ==================== MAT MENU ====================
+.mat-mdc-menu-panel {
+  background: $q-surface !important;
+  border: 1px solid $q-border;
+  border-radius: $q-radius-sm !important;
+
+  .mat-mdc-menu-item {
+    color: $q-text-secondary !important;
+
+    &:hover {
+      background: rgba($q-gold, 0.06) !important;
+      color: $q-text !important;
+    }
+  }
+}
+
+// ==================== MAT SELECT / INPUT ====================
+.mat-mdc-select-value-text {
+  color: $q-text !important;
+}
+
+.mat-mdc-option {
+  color: $q-text !important;
+
+  &:hover {
+    background: rgba($q-gold, 0.06) !important;
+  }
+
+  &.mdc-list-item--selected {
+    background: $q-gold-dim !important;
+    color: $q-gold !important;
+  }
 }
 
 // ==================== RESPONSIVE ====================
 @media (max-width: 1023px) {
   .topbar {
-    padding: 0 12px !important;
+    padding: 0 16px !important;
 
     .branding-link {
       .brand-name {
@@ -478,11 +581,10 @@ mat-card.cardWithShadow {
 
   .page-container {
     .pageWrapper {
-      padding: 12px !important;
+      padding: 14px !important;
     }
   }
 
-  // Stack form fields on mobile
   .row {
     > .col-lg-9,
     > .col-lg-3 {
@@ -494,7 +596,7 @@ mat-card.cardWithShadow {
 
 @media (max-width: 768px) {
   .mat-mdc-card-content {
-    padding: 14px !important;
+    padding: 16px !important;
   }
 
   .mat-mdc-table {
@@ -514,14 +616,12 @@ mat-card.cardWithShadow {
     }
   }
 
-  // Make tabs scrollable on mobile
   .mat-mdc-tab-header {
     .mat-mdc-tab-label-container {
       overflow-x: auto !important;
     }
   }
 
-  // Breadcrumb smaller
   .p-b-30 {
     padding-bottom: 16px !important;
   }
@@ -533,7 +633,7 @@ mat-card.cardWithShadow {
   }
 
   .mat-mdc-card-content {
-    padding: 10px !important;
+    padding: 12px !important;
   }
 
   .mat-mdc-card {
@@ -542,71 +642,64 @@ mat-card.cardWithShadow {
 
   .section-title,
   .page-title {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
   }
 }
 
-// ==================== DARK THEME ====================
+// ==================== DARK THEME (already dark, keep overrides for compat) ====================
 .dark-theme {
   body,
   & {
-    background: #0f172a !important;
-    color: #e2e8f0;
+    background: $q-bg !important;
+    color: $q-text;
   }
 
   .topbar {
-    background: #1e293b !important;
-    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
-
-    .mat-mdc-icon-button {
-      color: #94a3b8 !important;
-
-      svg {
-        stroke: #94a3b8 !important;
-      }
-
-      &:hover {
-        color: $q-teal !important;
-
-        svg {
-          stroke: $q-teal !important;
-        }
-      }
-    }
+    background: rgba($q-surface, 0.85) !important;
+    border-bottom-color: $q-border !important;
   }
 
   .mat-mdc-card,
   .cardWithShadow {
-    background: #1e293b !important;
-    border-color: rgba(255, 255, 255, 0.08) !important;
+    background: $q-surface !important;
+    border-color: $q-border !important;
   }
 
   .mat-mdc-table {
     .mat-mdc-header-row {
-      background: rgba(255, 255, 255, 0.03) !important;
+      background: rgba(255, 255, 255, 0.02) !important;
     }
 
     .mat-mdc-header-cell {
-      color: rgba(255, 255, 255, 0.5) !important;
-      border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+      color: $q-text-muted !important;
+      border-bottom-color: $q-border !important;
     }
 
     .mat-mdc-cell {
-      color: rgba(255, 255, 255, 0.8);
-      border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+      color: $q-text;
+      border-bottom-color: $q-border !important;
     }
 
     .mat-mdc-row:hover {
-      background: rgba($q-teal, 0.05) !important;
+      background: rgba($q-gold, 0.03) !important;
     }
   }
 
   .mat-mdc-paginator {
-    border-top-color: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.5);
+    border-top-color: $q-border;
+    color: $q-text-muted;
   }
 
   .breadcrumb {
-    color: rgba(255, 255, 255, 0.4);
+    color: $q-text-muted;
+  }
+}
+
+// ==================== LIGHT THEME OVERRIDE (force dark-first) ====================
+.light-theme {
+  body,
+  & {
+    background: $q-bg !important;
+    color: $q-text;
   }
 }

@@ -2,14 +2,16 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  margin-left: 8px;
+  margin-left: 12px;
+  gap: 10px;
 }
 
 .brand-name {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #0F172A;
-  letter-spacing: -0.03em;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #D4A853;
+  letter-spacing: 0.04em;
 }
 
 ::ng-deep .menu-btn {
@@ -22,11 +24,12 @@
   svg {
     width: 22px !important;
     height: 22px !important;
-    stroke: #334155 !important;
+    stroke: #8B95A8 !important;
+    transition: stroke 0.2s;
   }
 
   &:hover svg {
-    stroke: #2DD4BF !important;
+    stroke: #D4A853 !important;
   }
 }
 
@@ -38,18 +41,32 @@
   svg {
     width: 20px !important;
     height: 20px !important;
-    stroke: #64748b !important;
+    stroke: #8B95A8 !important;
+    transition: stroke 0.2s;
+  }
+
+  &:hover svg {
+    stroke: #D4A853 !important;
   }
 }
 
 ::ng-deep .lang-btn {
-  font-size: 0.7rem !important;
+  font-size: 0.65rem !important;
   font-weight: 700 !important;
-  letter-spacing: 0.05em;
-  color: #64748b !important;
+  letter-spacing: 0.08em;
+  color: #8B95A8 !important;
   min-width: 36px !important;
   width: 36px !important;
   height: 36px !important;
+  border: 1px solid rgba(212, 168, 83, 0.15) !important;
+  border-radius: 8px !important;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #D4A853 !important;
+    border-color: rgba(212, 168, 83, 0.3) !important;
+    background: rgba(212, 168, 83, 0.06) !important;
+  }
 }
 
 .profile-btn {
@@ -67,8 +84,8 @@
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #2DD4BF, #0d9488);
-  color: white;
+  background: linear-gradient(135deg, #D4A853, #B8860B);
+  color: #0B0E14;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,6 +93,12 @@
   font-weight: 700;
   letter-spacing: 0.03em;
   flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(212, 168, 83, 0.2);
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(212, 168, 83, 0.35);
+  }
 }
 
 .user-avatar-lg {
@@ -85,20 +108,21 @@
   border-radius: 12px;
 }
 
-:host-context(.dark-theme) {
+:host-context(.dark-theme),
+:host-context(.light-theme) {
   .brand-name {
-    color: #e2e8f0;
+    color: #D4A853;
   }
 
   .menu-btn,
   .header-btn {
-    color: #94a3b8;
+    color: #8B95A8;
   }
 }
 
 @media (max-width: 480px) {
   .brand-name {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 
   .user-avatar {
