@@ -143,6 +143,9 @@ export const landingTranslations: Record<string, Record<string, string>> = {
     s7Point3: 'Suivi en temps réel : chaque fichier tracé individuellement',
     s7Point4: '15 000 docs en 48h — sans ralentir l\'application',
     s7Point5: 'Background processing : l\'utilisateur ne voit rien, tout est fait',
+    s7Metric1Label: 'gagnées / semaine',
+    s7Metric2Label: 'documents perdus',
+    s7Metric3Label: 'en 48h',
     s7Quote: '"On a branché le FTP un vendredi soir. Lundi, tout était qualifié."',
 
     // Slide 8 - Comparison
@@ -161,6 +164,7 @@ export const landingTranslations: Record<string, Record<string, string>> = {
     s8Row6: 'Déploiement en 1 semaine',
     s8Row7: 'Coût accessible',
     s8Row8: '',
+    s8CompareNote: 'SharePoint, Alfresco, OpenText — aucun ne propose de qualification IA automatique avec connecteurs temps réel.',
     s8KDriveCost: '',
     s8SharePointCost: '',
     s8AlfrescoCost: '',
@@ -320,6 +324,9 @@ export const landingTranslations: Record<string, Record<string, string>> = {
     s7Point3: 'Real-time tracking: each file traced individually',
     s7Point4: '15,000 docs in 48h — without slowing the app',
     s7Point5: 'Background processing: user sees nothing, everything is done',
+    s7Metric1Label: 'saved / week',
+    s7Metric2Label: 'docs lost',
+    s7Metric3Label: 'in 48h',
     s7Quote: '"We connected the FTP on Friday evening. Monday, everything was qualified."',
 
     // Slide 8 - Comparison
@@ -338,6 +345,7 @@ export const landingTranslations: Record<string, Record<string, string>> = {
     s8Row6: 'Deploy in 1 week',
     s8Row7: 'Affordable',
     s8Row8: '',
+    s8CompareNote: 'SharePoint, Alfresco, OpenText — none offer automatic AI qualification with real-time connectors.',
     s8KDriveCost: '',
     s8SharePointCost: '',
     s8AlfrescoCost: '',

@@ -19,7 +19,6 @@
       <button class="btn-secondary" (click)="accessApp()">{{ t('btnDemo') }}</button>
     </div>
 
-    <!-- 3 key numbers -->
     <div class="hero-stats">
       @for (num of [1,2,3,4]; track num) {
         <div class="hero-stat">
@@ -96,31 +95,25 @@
           <div class="slide gx-slide">
             <span class="slide-badge teal">{{ t('s3Badge') }}</span>
             <h2 class="slide-title" [innerHTML]="t('s3Title').replace('\n', '<br>')"></h2>
-            <div class="gx-steps">
-              <div class="gx-step" style="animation-delay:0.1s">
-                <div class="gx-step-num">1</div>
-                <div class="gx-step-content">
-                  <h4>{{ t('s3Flow1') }}</h4>
-                </div>
+            <div class="gx-flow">
+              <div class="gx-flow-step" style="animation-delay:0.1s">
+                <span class="gx-flow-num">1</span>
+                <span class="gx-flow-label">{{ t('s3Flow1') }}</span>
               </div>
-              <div class="gx-step-arrow">&#8594;</div>
-              <div class="gx-step" style="animation-delay:0.25s">
-                <div class="gx-step-num gx-num-gold">2</div>
-                <div class="gx-step-content">
-                  <h4>{{ t('s3Flow2') }}</h4>
-                </div>
+              <div class="gx-flow-arrow">&rarr;</div>
+              <div class="gx-flow-step gx-flow-accent" style="animation-delay:0.25s">
+                <span class="gx-flow-num">2</span>
+                <span class="gx-flow-label">{{ t('s3Flow2') }}</span>
               </div>
-              <div class="gx-step-arrow">&#8594;</div>
-              <div class="gx-step" style="animation-delay:0.4s">
-                <div class="gx-step-num gx-num-teal">3</div>
-                <div class="gx-step-content">
-                  <h4>{{ t('s3Flow3') }}</h4>
-                </div>
+              <div class="gx-flow-arrow">&rarr;</div>
+              <div class="gx-flow-step gx-flow-done" style="animation-delay:0.4s">
+                <span class="gx-flow-num">3</span>
+                <span class="gx-flow-label">{{ t('s3Flow3') }}</span>
               </div>
             </div>
-            <div class="metrics-row" style="margin-top:1rem">
+            <div class="gx-metrics">
               @for (num of [1,2,3]; track num) {
-                <div class="metric-card">{{ t('s3Metric' + num) }}</div>
+                <div class="gx-metric" [style.animation-delay]="(num * 0.1) + 's'">{{ t('s3Metric' + num) }}</div>
               }
             </div>
           </div>
@@ -131,11 +124,14 @@
           <div class="slide gx-slide">
             <span class="slide-badge teal">{{ t('s4Badge') }}</span>
             <h2 class="slide-title">{{ t('s4Title') }}</h2>
-            <div class="features-mini-grid">
+            <div class="gx-connectors">
               @for (num of [1,2,3,4,5,6]; track num) {
-                <div class="feature-mini" [style.animation-delay]="(num * 0.1) + 's'">
-                  <h4>{{ t('s4f' + num + 'Title') }}</h4>
-                  <p>{{ t('s4f' + num + 'Desc') }}</p>
+                <div class="gx-connector" [style.animation-delay]="(num * 0.08) + 's'">
+                  <div class="gx-connector-dot"></div>
+                  <div class="gx-connector-body">
+                    <h4>{{ t('s4f' + num + 'Title') }}</h4>
+                    <p>{{ t('s4f' + num + 'Desc') }}</p>
+                  </div>
                 </div>
               }
             </div>
@@ -172,7 +168,7 @@
                   <div class="gx-ex-input">
                     <code>{{ t('s6Ex' + num + 'In') }}</code>
                   </div>
-                  <div class="gx-ex-arrow">&#8595;</div>
+                  <div class="gx-ex-arrow">&darr;</div>
                   <div class="gx-ex-output">
                     <span>{{ t('s6Ex' + num + 'Out') }}</span>
                   </div>
@@ -191,18 +187,18 @@
             <div class="gx-value-grid">
               <div class="gx-value-card" style="animation-delay:0.1s">
                 <span class="gx-value-num">7h+</span>
-                <span class="gx-value-label">saved / week</span>
+                <span class="gx-value-label">{{ t('s7Metric1Label') }}</span>
               </div>
               <div class="gx-value-card" style="animation-delay:0.2s">
                 <span class="gx-value-num">0</span>
-                <span class="gx-value-label">docs lost</span>
+                <span class="gx-value-label">{{ t('s7Metric2Label') }}</span>
               </div>
               <div class="gx-value-card" style="animation-delay:0.3s">
                 <span class="gx-value-num">15K</span>
-                <span class="gx-value-label">in 48h</span>
+                <span class="gx-value-label">{{ t('s7Metric3Label') }}</span>
               </div>
             </div>
-            <blockquote class="slide-quote" style="margin-top:1.5rem">{{ t('s7Quote') }}</blockquote>
+            <blockquote class="slide-quote">{{ t('s7Quote') }}</blockquote>
           </div>
         }
 
@@ -211,23 +207,19 @@
           <div class="slide gx-slide">
             <span class="slide-badge teal">{{ t('s8Badge') }}</span>
             <h2 class="slide-title">{{ t('s8Title') }}</h2>
-            <div class="compare-table">
-              <div class="compare-header">
-                <span></span>
-                <span class="highlight">{{ t('s8KDrive') }}</span>
+            <div class="gx-compare">
+              @for (row of ['Row1','Row2','Row3','Row4','Row5','Row6','Row7']; track row; let i = $index) {
+                <div class="gx-compare-row" [style.animation-delay]="(i * 0.06) + 's'">
+                  <span class="gx-compare-feature">{{ t('s8' + row) }}</span>
+                  <span class="gx-compare-check">&check;</span>
+                </div>
+              }
+              <div class="gx-compare-vs">
                 <span>{{ t('s8SharePoint') }}</span>
                 <span>{{ t('s8Alfresco') }}</span>
                 <span>{{ t('s8OpenText') }}</span>
               </div>
-              @for (row of ['Row1','Row2','Row3','Row4','Row5','Row6','Row7']; track row; let i = $index) {
-                <div class="compare-row" [style.animation-delay]="(i * 0.08) + 's'">
-                  <span>{{ t('s8' + row) }}</span>
-                  <span class="highlight">&#10003;</span>
-                  <span>{{ i < 2 ? '~' : '&times;' }}</span>
-                  <span>{{ i < 2 ? '~' : '&times;' }}</span>
-                  <span>{{ i < 2 ? '~' : '&times;' }}</span>
-                </div>
-              }
+              <p class="gx-compare-note">{{ t('s8CompareNote') }}</p>
             </div>
           </div>
         }
@@ -240,28 +232,34 @@
             <div class="slide-separator"></div>
             <h1 class="slide-main-title contact-title">Qualidoc</h1>
             <p class="gx-close-tagline" [innerHTML]="t('s10Subtitle').replace('\n', '<br>')"></p>
-            <div class="contact-links" style="margin-top:1rem">
-              <div class="contact-item"><span>{{ t('s10Web') }}</span></div>
-              <div class="contact-item"><span>{{ t('s10Email') }}</span></div>
+            <div class="contact-links">
+              <div class="contact-item">
+                <span class="contact-label">Web</span>
+                <span>{{ t('s10Web') }}</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">Email</span>
+                <span>{{ t('s10Email') }}</span>
+              </div>
             </div>
-            <p class="gx-by" style="margin-top:0.75rem">{{ t('s10ClosingSub') }}</p>
+            <div class="gx-founder">
+              <span>{{ t('s10ClosingSub') }}</span>
+            </div>
           </div>
         }
       </div>
 
       <!-- Navigation -->
       <div class="pitch-nav">
-        <button class="nav-arrow" (click)="prevSlide()" [class.disabled]="currentSlide() === 0">&#8592;</button>
+        <button class="nav-arrow" (click)="prevSlide()" [class.disabled]="currentSlide() === 0">&larr;</button>
         <div class="nav-dots">
           @for (dot of [0,1,2,3,4,5,6,7,8]; track dot) {
             <button class="dot" [class.active]="currentSlide() === dot" (click)="goToSlide(dot)"></button>
           }
         </div>
-        <button class="nav-arrow" (click)="nextSlide()" [class.disabled]="currentSlide() === activeTotalSlides - 1">&#8594;</button>
+        <button class="nav-arrow" (click)="nextSlide()" [class.disabled]="currentSlide() === activeTotalSlides - 1">&rarr;</button>
       </div>
       <div class="slide-counter">{{ currentSlide() + 1 }} / {{ totalSlides }}</div>
     </div>
   </div>
 }
-
-<!-- GITEX pitch modal removed — single pitch only -->
