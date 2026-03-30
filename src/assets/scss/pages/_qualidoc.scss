@@ -568,23 +568,22 @@ mat-card.cardWithShadow {
 }
 
 // ==================== RESPONSIVE ====================
+
+// Tablet landscape & small desktop
 @media (max-width: 1023px) {
   .topbar {
     padding: 0 16px !important;
 
-    .branding-link {
-      .brand-name {
-        font-size: 1rem;
-      }
+    .branding-link .brand-name {
+      font-size: 1rem;
     }
   }
 
-  .page-container {
-    .pageWrapper {
-      padding: 14px !important;
-    }
+  .page-container .pageWrapper {
+    padding: 14px !important;
   }
 
+  // Stack all lg columns
   .row {
     > .col-lg-9,
     > .col-lg-3 {
@@ -594,11 +593,63 @@ mat-card.cardWithShadow {
   }
 }
 
+// Tablet portrait — stack sm columns to 50% or 100%
+@media (max-width: 959px) {
+  .row {
+    > .col-sm-2,
+    > .col-sm-3 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    > .col-sm-4 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+
+  // Import/export form: stack fields
+  import-export-form .row {
+    gap: 8px;
+
+    > [class*="col-lg"] {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  // Dialogs should not overflow
+  .mat-mdc-dialog-container {
+    max-width: 95vw !important;
+
+    .mdc-dialog__surface {
+      max-width: 95vw !important;
+    }
+  }
+
+  .mat-mdc-dialog-content {
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+// Mobile
 @media (max-width: 768px) {
   .mat-mdc-card-content {
     padding: 16px !important;
   }
 
+  // Stack ALL form columns to full width on mobile
+  .row {
+    > [class*="col-sm"],
+    > [class*="col-md"],
+    > [class*="col-lg"] {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+    }
+  }
+
+  // Tables: horizontal scroll
   .mat-mdc-table {
     .mat-mdc-header-cell,
     .mat-mdc-cell {
@@ -616,6 +667,7 @@ mat-card.cardWithShadow {
     }
   }
 
+  // Scrollable tabs
   .mat-mdc-tab-header {
     .mat-mdc-tab-label-container {
       overflow-x: auto !important;
@@ -625,8 +677,33 @@ mat-card.cardWithShadow {
   .p-b-30 {
     padding-bottom: 16px !important;
   }
+
+  // Form buttons: full width on mobile
+  import-export-form {
+    .row {
+      padding: 12px 8px !important;
+    }
+
+    button[mat-flat-button],
+    button[mat-stroked-button] {
+      width: 100% !important;
+      height: 44px;
+    }
+  }
+
+  // Dialog actions stack vertically
+  .mat-mdc-dialog-actions {
+    flex-direction: column !important;
+    gap: 8px;
+
+    button {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+  }
 }
 
+// Small mobile
 @media (max-width: 480px) {
   .topbar {
     height: 56px !important;
@@ -643,6 +720,18 @@ mat-card.cardWithShadow {
   .section-title,
   .page-title {
     font-size: 1.1rem !important;
+  }
+
+  // Compact form field spacing
+  .mat-mdc-form-field {
+    margin-bottom: 4px;
+  }
+
+  // Settings forms: tighter padding
+  mat-card.cardWithShadow {
+    .p-24 {
+      padding: 16px !important;
+    }
   }
 }
 
