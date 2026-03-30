@@ -54,14 +54,14 @@ export class AppComponent implements OnInit {
     this.navItems = [
       { navCap: this.lang.t('nav.documents') },
       { displayName: this.lang.t('nav.documents'), iconName: 'folders', route: '/ged' },
-      { displayName: this.lang.t('nav.lexique'), iconName: 'vocabulary', route: '/lexique' },
+      { displayName: this.lang.t('nav.lexique'), iconName: 'vocabulary', route: '/lexique', disabled: true },
       { navCap: this.lang.t('nav.transfers') },
       { displayName: this.lang.t('nav.import'), iconName: 'download', route: '/import' },
-      { displayName: this.lang.t('nav.export'), iconName: 'upload', route: '/export' },
+      { displayName: this.lang.t('nav.export'), iconName: 'upload', route: '/export', disabled: true },
       { navCap: this.lang.t('nav.admin') },
       { displayName: this.lang.t('nav.docTypes'), iconName: 'file-settings', route: '/admin/type-import' },
       { displayName: this.lang.t('nav.configImport'), iconName: 'settings', route: 'admin/settings/import' },
-      { displayName: this.lang.t('nav.configExport'), iconName: 'settings', route: '/admin/settings/export' },
+      { displayName: this.lang.t('nav.configExport'), iconName: 'settings', route: '/admin/settings/export', disabled: true },
     ];
   }
 

@@ -59,6 +59,7 @@ export class AppNavItemComponent implements OnChanges {
   }
 
   onItemSelected(item: NavItem) {
+    if (item.disabled) return;
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
       
