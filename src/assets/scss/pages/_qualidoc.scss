@@ -49,17 +49,17 @@ body {
 }
 
 ::selection {
-  background: rgba($q-gold, 0.3);
+  background: rgba($q-gold, 0.35);
   color: #fff;
 }
 
 // ==================== TOOLBAR / HEADER ====================
 .topbar {
-  background: rgba($q-surface, 0.85) !important;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid $q-border !important;
-  box-shadow: none !important;
+  background: rgba($q-bg-deep, 0.92) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba($q-gold, 0.06) !important;
+  box-shadow: 0 1px 0 rgba($q-gold, 0.03) !important;
   height: 64px !important;
   padding: 0 24px !important;
 
@@ -83,18 +83,18 @@ body {
 // ==================== SIDEBAR ====================
 .sidebarNav {
   background: $q-bg-deep !important;
-  border-right: 1px solid $q-border !important;
+  border-right: 1px solid rgba($q-gold, 0.04) !important;
 
   .sidebar-list {
     padding: 12px 10px !important;
   }
 
   .mat-mdc-subheader {
-    color: $q-text-muted !important;
-    font-size: 0.6rem !important;
-    letter-spacing: 0.18em;
+    color: rgba($q-gold, 0.35) !important;
+    font-size: 0.58rem !important;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 800;
     padding: 28px 16px 8px !important;
   }
 
@@ -102,11 +102,11 @@ body {
     border-radius: $q-radius-sm !important;
     margin: 2px 0 !important;
     color: $q-text-secondary !important;
-    transition: all 0.25s cubic-bezier(.4, 0, .2, 1) !important;
+    transition: all 0.2s cubic-bezier(.4, 0, .2, 1) !important;
     height: 44px !important;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.04) !important;
+      background: rgba($q-gold, 0.04) !important;
       color: $q-text !important;
 
       .routeIcon {
@@ -117,7 +117,7 @@ body {
     .routeIcon {
       color: $q-text-muted !important;
       font-size: 20px;
-      transition: color 0.25s ease;
+      transition: color 0.2s ease;
     }
 
     .hide-menu {
@@ -128,9 +128,9 @@ body {
   }
 
   .activeMenu {
-    background: $q-gold-dim !important;
+    background: rgba($q-gold, 0.08) !important;
     color: $q-gold !important;
-    box-shadow: inset 3px 0 0 $q-gold;
+    border-left: 3px solid $q-gold;
 
     .routeIcon {
       color: $q-gold !important;
@@ -146,15 +146,17 @@ body {
 // ==================== CARDS ====================
 .mat-mdc-card,
 .cardWithShadow {
-  background: $q-surface !important;
+  background: rgba($q-surface, 0.7) !important;
+  backdrop-filter: blur(12px);
   border-radius: $q-radius !important;
-  border: 1px solid $q-border !important;
-  box-shadow: $q-shadow-sm !important;
+  border: 1px solid rgba($q-gold, 0.04) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2) !important;
   overflow: hidden;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    border-color: $q-border-hover !important;
+    border-color: rgba($q-gold, 0.1) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25), $q-shadow-gold !important;
   }
 }
 
@@ -169,17 +171,17 @@ body {
   overflow: hidden;
 
   .mat-mdc-header-row {
-    background: rgba(255, 255, 255, 0.02) !important;
+    background: rgba($q-gold, 0.02) !important;
     height: 48px !important;
   }
 
   .mat-mdc-header-cell {
-    color: $q-text-muted !important;
-    font-size: 0.7rem !important;
+    color: rgba($q-gold, 0.5) !important;
+    font-size: 0.68rem !important;
     font-weight: 700 !important;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    border-bottom: 1px solid $q-border !important;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba($q-gold, 0.06) !important;
     background: transparent !important;
   }
 
@@ -195,7 +197,7 @@ body {
   .mat-mdc-cell {
     font-size: 0.875rem;
     color: $q-text;
-    border-bottom: 1px solid $q-border !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
     background: transparent !important;
   }
 
@@ -230,7 +232,16 @@ td.mat-mdc-cell {
   .mdc-notched-outline__leading,
   .mdc-notched-outline__trailing,
   .mdc-notched-outline__notch {
-    border-color: $q-border !important;
+    border-color: rgba($q-gold, 0.08) !important;
+    transition: border-color 0.25s ease;
+  }
+
+  &:hover:not(.mat-focused) {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__trailing,
+    .mdc-notched-outline__notch {
+      border-color: rgba($q-gold, 0.15) !important;
+    }
   }
 
   &.mat-focused {
@@ -243,11 +254,12 @@ td.mat-mdc-cell {
   }
 
   .mat-mdc-floating-label {
-    color: $q-text-secondary !important;
+    color: $q-text-muted !important;
   }
 
   input.mat-mdc-input-element {
     color: $q-text !important;
+    caret-color: $q-gold;
   }
 }
 
@@ -259,7 +271,7 @@ td.mat-mdc-cell {
   font-weight: 600 !important;
   letter-spacing: 0.03em;
   text-transform: none !important;
-  transition: all 0.25s ease !important;
+  transition: all 0.25s cubic-bezier(.4, 0, .2, 1) !important;
 }
 
 .mat-primary {
@@ -267,18 +279,25 @@ td.mat-mdc-cell {
   --mdc-filled-button-label-text-color: #0B0E14 !important;
 
   &:hover {
-    box-shadow: 0 4px 20px rgba($q-gold, 0.3) !important;
+    box-shadow: 0 4px 20px rgba($q-gold, 0.35), 0 0 0 1px rgba($q-gold, 0.2) !important;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 
 // Stroked buttons
 button[mat-stroked-button] {
-  border-color: rgba($q-gold, 0.3) !important;
+  border-color: rgba($q-gold, 0.2) !important;
   color: $q-gold !important;
+  transition: all 0.25s ease !important;
 
   &:hover {
-    background: $q-gold-dim !important;
-    border-color: $q-gold !important;
+    background: rgba($q-gold, 0.06) !important;
+    border-color: rgba($q-gold, 0.4) !important;
+    box-shadow: 0 0 20px rgba($q-gold, 0.08) !important;
   }
 }
 
@@ -286,11 +305,16 @@ button[mat-stroked-button] {
 .mat-mdc-tab-group {
   .mat-mdc-tab {
     font-weight: 600 !important;
-    font-size: 0.82rem !important;
-    letter-spacing: 0.04em;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     min-width: 100px;
-    color: $q-text-secondary !important;
+    color: $q-text-muted !important;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $q-text-secondary !important;
+    }
   }
 
   .mdc-tab-indicator__content--underline {
@@ -319,13 +343,19 @@ button[mat-stroked-button] {
 // ==================== STATUS BADGES ====================
 .bg-light-success, .bg-light-warning, .bg-light-error, .bg-light-secondary {
   border-radius: 20px !important;
-  padding: 5px 14px !important;
-  font-size: 0.68rem !important;
+  padding: 4px 12px !important;
+  font-size: 0.65rem !important;
   font-weight: 700 !important;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   display: inline-block;
   text-transform: uppercase;
+  border: 1px solid transparent;
 }
+
+.bg-light-success { border-color: rgba($q-success, 0.15) !important; }
+.bg-light-warning { border-color: rgba($q-warning, 0.15) !important; }
+.bg-light-error { border-color: rgba($q-error, 0.15) !important; }
+.bg-light-secondary { border-color: rgba($q-text-muted, 0.12) !important; }
 
 .bg-light-success {
   background: rgba($q-success, 0.12) !important;
@@ -399,8 +429,8 @@ button[mat-stroked-button] {
 
 // ==================== SCROLLBAR ====================
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -408,8 +438,9 @@ button[mat-stroked-button] {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba($q-text-muted, 0.2);
+  background: rgba($q-gold, 0.12);
   border-radius: 10px;
+  transition: background 0.2s;
 
   &:hover {
     background: rgba($q-gold, 0.3);
@@ -422,15 +453,17 @@ button[mat-stroked-button] {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border-radius: 8px;
-    transition: all 0.25s;
+    transition: all 0.2s;
     color: $q-text-muted;
+    border: 1px solid transparent;
 
     &:hover {
-      background: $q-gold-dim;
+      background: rgba($q-gold, 0.06);
       color: $q-gold;
+      border-color: rgba($q-gold, 0.12);
     }
   }
 }
@@ -474,10 +507,10 @@ import-export-form {
 // ==================== PAGE ====================
 .page-title {
   font-family: $font-display !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   color: $q-text;
-  font-size: 1.3rem !important;
-  letter-spacing: 0.01em;
+  font-size: 1.4rem !important;
+  letter-spacing: 0.02em;
 }
 
 .pageWrapper {
@@ -495,9 +528,10 @@ import-export-form {
 
   .page-title {
     font-family: $font-display !important;
-    font-size: 1.35rem !important;
-    font-weight: 600;
+    font-size: 1.5rem !important;
+    font-weight: 500;
     color: $q-text;
+    letter-spacing: 0.02em;
   }
 }
 
@@ -518,15 +552,16 @@ mat-card.cardWithShadow {
 // ==================== NOTIFICATIONS ====================
 .dd-notifications {
   border-radius: $q-radius !important;
-  border: 1px solid $q-border;
-  box-shadow: $q-shadow-lg !important;
-  background: $q-surface !important;
+  border: 1px solid rgba($q-gold, 0.06);
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba($q-gold, 0.04) !important;
+  background: rgba($q-surface, 0.95) !important;
+  backdrop-filter: blur(20px);
 }
 
 // ==================== MOBILE OVERLAY ====================
 .mat-drawer-backdrop.mat-drawer-shown {
-  background: rgba(0, 0, 0, 0.65) !important;
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(6px);
 }
 
 .mat-sidenav.sidebarNav {
@@ -535,12 +570,17 @@ mat-card.cardWithShadow {
 
 // ==================== MAT MENU ====================
 .mat-mdc-menu-panel {
-  background: $q-surface !important;
-  border: 1px solid $q-border;
-  border-radius: $q-radius-sm !important;
+  background: rgba($q-surface, 0.95) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($q-gold, 0.06);
+  border-radius: 12px !important;
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.45) !important;
 
   .mat-mdc-menu-item {
     color: $q-text-secondary !important;
+    border-radius: 6px;
+    margin: 2px 4px;
+    transition: all 0.15s;
 
     &:hover {
       background: rgba($q-gold, 0.06) !important;

@@ -11,6 +11,7 @@
 
   <!-- Logo -->
   <a [routerLink]="['/ged']" class="branding-link">
+    <span class="brand-icon">Q</span>
     <span class="brand-name">Qualidoc</span>
   </a>
 
@@ -49,26 +50,20 @@
   </button>
   <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow dd-notifications" xPosition="before">
     <ng-container *ngIf="user$() as user">
-      <div class="p-x-16 p-y-16 b-b-1">
-        <div class="d-flex align-items-center" style="gap: 12px;">
-          <div class="user-avatar user-avatar-lg">
-            {{ (user.firstName || 'D')[0] }}{{ (user.lastName || 'I')[0] }}
-          </div>
-          <div>
-            <h6 class="f-s-14 f-w-600 m-0">{{ user.firstName }} {{ user.lastName }}</h6>
-            <span class="f-s-12" style="color: #94a3b8;">{{ user.email }}</span>
-          </div>
+      <div class="profile-dd-header">
+        <div class="user-avatar user-avatar-lg">
+          {{ (user.firstName || 'D')[0] }}{{ (user.lastName || 'I')[0] }}
+        </div>
+        <div>
+          <h6 class="profile-dd-name">{{ user.firstName }} {{ user.lastName }}</h6>
+          <span class="profile-dd-email">{{ user.email }}</span>
         </div>
       </div>
-      <div class="p-x-16 p-y-8">
-        <a class="p-8 text-decoration-none d-block" style="color: #94a3b8; font-size: 0.8rem;">
-          {{ lang.t('header.lastLogin') }} : {{ user.lastAccess }}
-        </a>
+      <div class="profile-dd-meta">
+        {{ lang.t('header.lastLogin') }} : {{ user.lastAccess }}
       </div>
-      <div class="p-x-16 p-y-8 b-t-1">
-        <a class="p-8 text-decoration-none d-block cursor-pointer" style="color: #ef4444; font-weight: 600; font-size: 0.85rem;" (click)="signout()">
-          {{ lang.t('header.logout') }}
-        </a>
+      <div class="profile-dd-logout">
+        <a (click)="signout()">{{ lang.t('header.logout') }}</a>
       </div>
     </ng-container>
   </mat-menu>
