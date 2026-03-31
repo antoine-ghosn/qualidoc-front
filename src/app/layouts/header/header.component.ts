@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
   store = inject(Store);
   updates = signal<(FileTransferUpdate | FileCompressionUpdate)[]>([]);
 
-  theme: string = 'light';
+  theme: string = 'dark';
   user$ = this.store.selectSignal<User | undefined>(selectUser);
 
   private htmlElement = document.querySelector('html')!;

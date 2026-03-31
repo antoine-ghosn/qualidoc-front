@@ -16,17 +16,6 @@
 
   <span class="flex-1-auto"></span>
 
-  <!-- Theme toggle -->
-  @if (theme === 'light') {
-    <button mat-icon-button (click)="setlightDark('dark')" class="header-btn">
-      <i-tabler class="d-flex icon-20" name="moon"></i-tabler>
-    </button>
-  } @else {
-    <button mat-icon-button (click)="setlightDark('light')" class="header-btn">
-      <i-tabler class="d-flex icon-20" name="sun"></i-tabler>
-    </button>
-  }
-
   <!-- Language toggle -->
   <button mat-icon-button (click)="lang.toggle()" class="header-btn lang-btn">
     {{ lang.lang() === 'fr' ? 'EN' : 'FR' }}
