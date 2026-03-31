@@ -8,10 +8,11 @@ import { DocumentActions } from '../../store/document/documents.action';
 import { DialogComponent } from './dialog/dialog.component';
 import { DocumentColumn } from '../../open-api/generated';
 import { LanguageService } from '../../shared/i18n/language.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ged-data-table',
-  imports: [MaterialModule, TablerIconsModule],
+  imports: [CommonModule, MaterialModule, TablerIconsModule],
   templateUrl: './ged-data-table.component.html',
   styleUrl: './ged-data-table.component.scss',
 })
@@ -24,14 +25,42 @@ export class GedDataTableComponent {
   lang = inject(LanguageService);
 
   displayedColumns: string[] = [];
+  visibleColumns: DocumentColumn[] = [];
+
+  // Mobile pagination
+  mobilePage = 0;
+  mobilePageSize = 10;
+
   ngOnChanges(): void {
+    this.visibleColumns = this.columns
+      .filter((c) => c.visibility)
+      .sort((a, b) => a.order - b.order);
+
     this.displayedColumns = [
-      ...this.columns
-        .filter((c) => c.visibility)
-        .sort((a, b) => a.order - b.order)
-        .map((c) => c.name),
+      ...this.visibleColumns.map((c) => c.name),
       'action',
     ];
+
+    this.mobilePage = 0;
+  }
+
+  get mobileData(): any[] {
+    if (!this.data?.filteredData) return [];
+    const start = this.mobilePage * this.mobilePageSize;
+    return this.data.filteredData.slice(start, start + this.mobilePageSize);
+  }
+
+  get mobileTotalPages(): number {
+    if (!this.data?.filteredData) return 0;
+    return Math.ceil(this.data.filteredData.length / this.mobilePageSize);
+  }
+
+  mobileNext(): void {
+    if (this.mobilePage < this.mobileTotalPages - 1) this.mobilePage++;
+  }
+
+  mobilePrev(): void {
+    if (this.mobilePage > 0) this.mobilePage--;
   }
 
   getColumnValue(dataRow: any, column: string) {

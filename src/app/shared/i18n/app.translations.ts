@@ -17,6 +17,7 @@ export const appTranslations: Record<string, Record<string, string>> = {
     'ged.listView': 'Liste',
     'ged.treeView': 'Arborescence',
     'ged.action': 'Action',
+    'ged.noResults': 'Aucun document trouvé',
 
     // Import/Export
     'transfer.folder': 'Dossier',
@@ -86,6 +87,7 @@ export const appTranslations: Record<string, Record<string, string>> = {
     'ged.listView': 'List',
     'ged.treeView': 'Tree View',
     'ged.action': 'Action',
+    'ged.noResults': 'No documents found',
 
     // Import/Export
     'transfer.folder': 'Folder',

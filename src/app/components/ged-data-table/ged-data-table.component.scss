@@ -1,3 +1,19 @@
+$gold: #D4A853;
+$gold-dim: rgba(212, 168, 83, 0.12);
+$surface: #161B24;
+$border: rgba(255, 255, 255, 0.06);
+$text: #E8ECF4;
+$text-muted: #8B95A8;
+$text-dim: #565F72;
+
+// ── Mobile card view hidden on desktop ──
+.ged-mobile { display: none; }
+
+// ── Desktop table ──
+.ged-desktop {
+  display: block;
+}
+
 ::ng-deep .ged-table {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -11,7 +27,7 @@
     transition: background 0.15s ease;
 
     &:hover {
-      background: rgba(212, 168, 83, 0.03);
+      background: rgba($gold, 0.03);
     }
   }
 
@@ -39,20 +55,148 @@
   }
 }
 
-@media (max-width: 768px) {
-  ::ng-deep .ged-table {
-    .ged-cell {
-      max-width: 140px;
-      font-size: 0.8rem;
-    }
+// ── Mobile card view ──
+.ged-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s;
 
-    .mat-mdc-header-cell {
-      font-size: 0.7rem !important;
-      padding: 8px 6px !important;
-    }
-
-    .mat-mdc-cell {
-      padding: 8px 6px !important;
-    }
+  &:active {
+    border-color: rgba($gold, 0.25);
   }
+}
+
+.ged-card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ged-card-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: $text;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.ged-card-field {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1.3;
+}
+
+.ged-card-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $text-dim;
+  flex-shrink: 0;
+
+  &::after {
+    content: ':';
+  }
+}
+
+.ged-card-value {
+  font-size: 0.8rem;
+  color: $text-muted;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ged-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ged-card-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid $border;
+  background: transparent;
+  color: $text-muted;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:active {
+    background: $gold-dim;
+    border-color: rgba($gold, 0.3);
+    color: $gold;
+  }
+}
+
+.ged-empty {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: $text-dim;
+  font-size: 0.85rem;
+}
+
+// ── Mobile paginator ──
+.ged-mobile-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 0 4px;
+}
+
+.ged-pager-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid $border;
+  background: transparent;
+  color: $text;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:active:not(:disabled) {
+    background: $gold-dim;
+    border-color: rgba($gold, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
+}
+
+.ged-pager-info {
+  font-size: 0.75rem;
+  color: $text-dim;
+  letter-spacing: 0.1em;
+}
+
+// ── Breakpoint: switch table → cards ──
+@media (max-width: 768px) {
+  .ged-desktop { display: none; }
+  .ged-mobile { display: block; }
 }

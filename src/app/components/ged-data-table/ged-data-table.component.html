@@ -1,33 +1,75 @@
-<div class="table-responsive ged-table">
-  <table mat-table [dataSource]="data" class="w-100">
-    @for (column of columns; track column) {
-    <ng-container [matColumnDef]="column.name">
-      <th mat-header-cell *matHeaderCellDef>
-        {{ getColumnHeader(column) }}
-      </th>
-      <td mat-cell *matCellDef="let element" (click)="onItemClick('SHOW',element)" class="ged-cell">
-        {{ getColumnValue(element, column.name) }}
-      </td>
-    </ng-container>
-    }
+<!-- Desktop: table view -->
+<div class="ged-desktop">
+  <div class="table-responsive ged-table">
+    <table mat-table [dataSource]="data" class="w-100">
+      @for (column of columns; track column) {
+      <ng-container [matColumnDef]="column.name">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ getColumnHeader(column) }}
+        </th>
+        <td mat-cell *matCellDef="let element" (click)="onItemClick('SHOW',element)" class="ged-cell">
+          {{ getColumnValue(element, column.name) }}
+        </td>
+      </ng-container>
+      }
 
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>{{ lang.t('ged.action') }}</th>
-      <td mat-cell *matCellDef="let element" class="action-link ged-actions">
-        <a class="cursor-pointer" (click)="onItemClick('EDIT', element)">
-          <i-tabler name="edit" class="icon-18"></i-tabler>
-        </a>
-        <a class="cursor-pointer" (click)="onItemClick('DOWNLOAD', element)">
-          <i-tabler name="download" class="icon-18"></i-tabler>
-        </a>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>{{ lang.t('ged.action') }}</th>
+        <td mat-cell *matCellDef="let element" class="action-link ged-actions">
+          <a class="cursor-pointer" (click)="onItemClick('EDIT', element)">
+            <i-tabler name="edit" class="icon-18"></i-tabler>
+          </a>
+          <a class="cursor-pointer" (click)="onItemClick('DOWNLOAD', element)">
+            <i-tabler name="download" class="icon-18"></i-tabler>
+          </a>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-  ></mat-paginator>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      #desktopPaginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
+
+<!-- Mobile: card view -->
+<div class="ged-mobile">
+  @for (element of mobileData; track element) {
+    <div class="ged-card" (click)="onItemClick('SHOW', element)">
+      <div class="ged-card-body">
+        @for (col of visibleColumns; track col.name; let first = $first) {
+          @if (first) {
+            <div class="ged-card-title">{{ getColumnValue(element, col.name) }}</div>
+          } @else {
+            <div class="ged-card-field">
+              <span class="ged-card-label">{{ getColumnHeader(col) }}</span>
+              <span class="ged-card-value">{{ getColumnValue(element, col.name) }}</span>
+            </div>
+          }
+        }
+      </div>
+      <div class="ged-card-actions">
+        <button class="ged-card-btn" (click)="$event.stopPropagation(); onItemClick('EDIT', element)">
+          <i-tabler name="edit" class="icon-16"></i-tabler>
+        </button>
+        <button class="ged-card-btn" (click)="$event.stopPropagation(); onItemClick('DOWNLOAD', element)">
+          <i-tabler name="download" class="icon-16"></i-tabler>
+        </button>
+      </div>
+    </div>
+  }
+  @if (!mobileData || mobileData.length === 0) {
+    <div class="ged-empty">{{ lang.t('ged.noResults') }}</div>
+  }
+  @if (data && data.filteredData && data.filteredData.length > mobilePageSize) {
+    <div class="ged-mobile-pager">
+      <button class="ged-pager-btn" [disabled]="mobilePage === 0" (click)="mobilePrev()">&larr;</button>
+      <span class="ged-pager-info">{{ mobilePage + 1 }} / {{ mobileTotalPages }}</span>
+      <button class="ged-pager-btn" [disabled]="mobilePage >= mobileTotalPages - 1" (click)="mobileNext()">&rarr;</button>
+    </div>
+  }
 </div>
